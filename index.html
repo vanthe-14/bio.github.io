@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Mai Văn Thế</title>
+
 
 <style>
 
 /* =====================================================
-   CƠ BẢN
+   RESET
 ===================================================== */
 
 * {
@@ -18,22 +25,31 @@
     box-sizing: border-box;
 }
 
+
 html,
 body {
     width: 100%;
     min-height: 100%;
 }
 
+
 body {
+
     background: #000;
+
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow-x: hidden;
 }
 
 
 /* =====================================================
-   CANVAS SAO 3D
+   SAO 3D
 ===================================================== */
 
 #starfield {
@@ -55,7 +71,7 @@ body {
 
 
 /* =====================================================
-   NÚT TRÊN
+   CONTAINER
 ===================================================== */
 
 .container {
@@ -70,11 +86,16 @@ body {
 
     margin: auto;
 
-    padding: 30px 25px 50px;
+    padding:
+        30px 25px 50px;
 
     z-index: 2;
 }
 
+
+/* =====================================================
+   NÚT TRÊN
+===================================================== */
 
 .top {
 
@@ -89,13 +110,15 @@ body {
 .top button {
 
     width: 60px;
+
     height: 60px;
 
     border: none;
 
     border-radius: 16px;
 
-    background: rgba(15,15,15,.9);
+    background:
+        rgba(15,15,15,.92);
 
     color: white;
 
@@ -109,9 +132,11 @@ body {
 
 .top button:hover {
 
-    transform: scale(1.06);
+    transform:
+        scale(1.06);
 
-    background: rgba(30,30,30,.95);
+    background:
+        rgba(30,30,30,.95);
 }
 
 
@@ -157,7 +182,8 @@ body {
 
         0 0 30px #008cff,
 
-        0 0 60px rgba(0,140,255,.5);
+        0 0 60px
+        rgba(0,140,255,.5);
 }
 
 
@@ -189,7 +215,8 @@ body {
 
         0 0 20px #0088ff,
 
-        0 0 35px rgba(0,136,255,.8);
+        0 0 35px
+        rgba(0,136,255,.8);
 }
 
 
@@ -240,8 +267,8 @@ body {
     font-size: 27px;
 
     box-shadow:
-
-        0 0 18px rgba(255,255,255,.3);
+        0 0 18px
+        rgba(255,255,255,.3);
 }
 
 
@@ -263,7 +290,7 @@ body {
 
     font-size: 18px;
 
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 
@@ -283,15 +310,15 @@ body {
 
     width: 100%;
 
-    height: 260px;
+    height: 220px;
 
-    margin-bottom: 5px;
+    margin-bottom: 0;
 
     overflow: hidden;
 }
 
 
-/* ánh sáng trên biển */
+/* ÁNH SÁNG */
 
 .boat-section::before {
 
@@ -301,26 +328,27 @@ body {
 
     left: 50%;
 
-    top: 70px;
+    top: 65px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    width: 330px;
+    width: 280px;
 
-    height: 90px;
+    height: 75px;
 
     background:
-
         rgba(0,140,255,.13);
 
     border-radius: 50%;
 
-    filter: blur(30px);
+    filter:
+        blur(28px);
 }
 
 
 /* =====================================================
-   THUYỀN
+   THUYỀN NHỎ
 ===================================================== */
 
 .sailing-boat {
@@ -329,16 +357,16 @@ body {
 
     left: 50%;
 
-    bottom: 38px;
+    bottom: 32px;
 
-    width: 410px;
+    width: 330px;
 
-    height: 225px;
+    height: 185px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     animation:
-
         boatFloat 4s ease-in-out infinite;
 
     z-index: 5;
@@ -350,66 +378,52 @@ body {
     0% {
 
         transform:
-
             translateX(-50%)
-
             translateY(0)
-
             rotate(-2deg);
     }
 
     50% {
 
         transform:
-
             translateX(-50%)
-
-            translateY(8px)
-
+            translateY(7px)
             rotate(2deg);
     }
 
     100% {
 
         transform:
-
             translateX(-50%)
-
             translateY(0)
-
             rotate(-2deg);
     }
 }
 
 
 /* =====================================================
-   CỘT BUỒM
+   CỘT
 ===================================================== */
 
 .mast {
 
     position: absolute;
 
-    left: 200px;
+    left: 161px;
 
-    bottom: 55px;
+    bottom: 47px;
 
-    width: 7px;
+    width: 6px;
 
-    height: 195px;
+    height: 160px;
 
     background:
 
         linear-gradient(
-
             to right,
-
             #444,
-
             #fff,
-
             #555
-
         );
 
     border-radius: 5px;
@@ -418,7 +432,8 @@ body {
 
         0 0 8px white,
 
-        0 0 15px rgba(255,255,255,.5);
+        0 0 15px
+        rgba(255,255,255,.5);
 }
 
 
@@ -430,30 +445,24 @@ body {
 
     position: absolute;
 
-    left: 45px;
+    left: 35px;
 
-    bottom: 80px;
+    bottom: 67px;
 
     width: 0;
 
     height: 0;
 
     border-right:
-
-        145px solid transparent;
+        115px solid transparent;
 
     border-bottom:
-
-        175px solid #f5f5f5;
+        145px solid #f5f5f5;
 
     filter:
-
         drop-shadow(
-
-            0 0 12px
-
+            0 0 10px
             rgba(255,255,255,.5)
-
         );
 }
 
@@ -466,30 +475,24 @@ body {
 
     position: absolute;
 
-    left: 205px;
+    left: 166px;
 
-    bottom: 90px;
+    bottom: 75px;
 
     width: 0;
 
     height: 0;
 
     border-left:
-
-        90px solid transparent;
+        72px solid transparent;
 
     border-bottom:
-
-        120px solid #777;
+        100px solid #777;
 
     filter:
-
         drop-shadow(
-
-            0 0 10px
-
+            0 0 8px
             rgba(0,140,255,.6)
-
         );
 }
 
@@ -502,7 +505,7 @@ body {
 
     position: absolute;
 
-    left: 205px;
+    left: 166px;
 
     top: 0;
 
@@ -511,23 +514,17 @@ body {
     height: 0;
 
     border-top:
-
-        12px solid transparent;
+        10px solid transparent;
 
     border-bottom:
-
-        12px solid transparent;
+        10px solid transparent;
 
     border-left:
-
-        45px solid #00aaff;
+        38px solid #00aaff;
 
     filter:
-
         drop-shadow(
-
             0 0 8px #008cff
-
         );
 }
 
@@ -540,51 +537,41 @@ body {
 
     position: absolute;
 
-    left: 10px;
+    left: 8px;
 
-    bottom: 10px;
+    bottom: 8px;
 
-    width: 390px;
+    width: 315px;
 
-    height: 62px;
+    height: 52px;
 
     background:
 
         linear-gradient(
-
             to bottom,
-
             #444,
-
             #151515,
-
             #000
-
         );
 
     clip-path:
 
         polygon(
-
             0 0,
-
             100% 0,
-
             82% 100%,
-
             15% 100%
-
         );
 
     border-bottom:
-
         4px solid #008cff;
 
     box-shadow:
 
-        0 0 15px #008cff,
+        0 0 12px #008cff,
 
-        0 0 30px rgba(0,140,255,.6);
+        0 0 25px
+        rgba(0,140,255,.6);
 }
 
 
@@ -598,32 +585,25 @@ body {
 
     left: -10%;
 
-    bottom: 25px;
+    bottom: 18px;
 
     width: 120%;
 
-    height: 90px;
+    height: 75px;
 
     z-index: 3;
 
     background:
 
         repeating-linear-gradient(
-
             -5deg,
-
             transparent 0,
-
-            transparent 12px,
-
-            rgba(0,140,255,.35) 14px,
-
-            transparent 17px
-
+            transparent 11px,
+            rgba(0,140,255,.35) 13px,
+            transparent 16px
         );
 
     animation:
-
         waterMove 5s linear infinite;
 }
 
@@ -631,13 +611,11 @@ body {
 @keyframes waterMove {
 
     from {
-
         transform:
             translateX(0);
     }
 
     to {
-
         transform:
             translateX(-100px);
     }
@@ -652,47 +630,42 @@ body {
 
     position: absolute;
 
-    height: 14px;
+    height: 12px;
 
     border-top:
-
         3px solid #008cff;
 
     border-radius: 50%;
 
     filter:
-
         drop-shadow(
-
             0 0 7px #008cff
-
         );
 
     z-index: 10;
 
     animation:
-
         waveMove 3s ease-in-out infinite;
 }
 
 
 .wave1 {
 
-    width: 180px;
+    width: 150px;
 
     left: 0;
 
-    bottom: 32px;
+    bottom: 25px;
 }
 
 
 .wave2 {
 
-    width: 240px;
+    width: 200px;
 
-    left: 25%;
+    left: 28%;
 
-    bottom: 50px;
+    bottom: 42px;
 
     animation-delay: .5s;
 }
@@ -700,11 +673,11 @@ body {
 
 .wave3 {
 
-    width: 190px;
+    width: 160px;
 
     right: 0;
 
-    bottom: 30px;
+    bottom: 23px;
 
     animation-delay: 1s;
 }
@@ -715,27 +688,21 @@ body {
     0% {
 
         transform:
-
-            translateX(-20px)
-
+            translateX(-18px)
             scaleX(.9);
     }
 
     50% {
 
         transform:
-
-            translateX(20px)
-
+            translateX(18px)
             scaleX(1.1);
     }
 
     100% {
 
         transform:
-
-            translateX(-20px)
-
+            translateX(-18px)
             scaleX(.9);
     }
 }
@@ -857,7 +824,8 @@ body {
 
 .play-btn:hover {
 
-    transform: scale(1.08);
+    transform:
+        scale(1.08);
 }
 
 
@@ -870,14 +838,14 @@ body {
     .container {
 
         padding:
-
             25px 18px 40px;
     }
 
 
     .top {
 
-        margin-bottom: 65px;
+        margin-bottom:
+            65px;
     }
 
 
@@ -886,6 +854,8 @@ body {
         width: 55px;
 
         height: 55px;
+
+        font-size: 25px;
     }
 
 
@@ -925,19 +895,25 @@ body {
     }
 
 
+    /* THUYỀN NHỎ TRÊN ĐIỆN THOẠI */
+
     .boat-section {
 
-        height: 225px;
+        height: 195px;
     }
 
 
     .sailing-boat {
 
+        width: 330px;
+
+        height: 185px;
+
+        bottom: 25px;
+
         transform:
-
             translateX(-50%)
-
-            scale(.82);
+            scale(.72);
     }
 
 
@@ -982,7 +958,7 @@ body {
 
 
 /* =====================================================
-   MOBILE NHỎ
+   ĐIỆN THOẠI NHỎ
 ===================================================== */
 
 @media (max-width: 420px) {
@@ -1007,18 +983,25 @@ body {
     }
 
 
+    .stats {
+
+        font-size: 13px;
+
+        gap: 5px;
+    }
+
+
     .sailing-boat {
 
         transform:
-
             translateX(-50%)
-
-            scale(.68);
+            scale(.62);
     }
 
 }
 
 </style>
+
 </head>
 
 
@@ -1072,13 +1055,9 @@ body {
 
 
         <img
-
             class="avatar"
-
-            src="https://raw.githubusercontent.com/vanthe-14/vanthe.github.io/main/avatar.jpeg"
-
+            src="avatar.jpeg"
             alt="Mai Văn Thế"
-
         >
 
 
@@ -1094,7 +1073,7 @@ body {
 
             <div class="bio">
 
-                Between her and money, I choose money!
+                All difficulties will pass, like the way the shower runs throuh the window!
 
             </div>
 
@@ -1131,7 +1110,7 @@ body {
 
         <b>
 
-            ♥ <span id="likes">100k</span>
+            💙 100K
 
         </b>
 
@@ -1159,7 +1138,7 @@ body {
 
         <b>
 
-            Hà Nội
+            📍 Hà Nội
 
         </b>
 
@@ -1316,7 +1295,9 @@ body {
 ===================================================== */
 
 const canvas =
-    document.getElementById("starfield");
+    document.getElementById(
+        "starfield"
+    );
 
 const ctx =
     canvas.getContext("2d");
@@ -1330,9 +1311,19 @@ let centerY;
 
 let stars = [];
 
-const STAR_COUNT = 650;
 
-let speed = 3;
+/*
+    Số lượng sao
+*/
+
+const STAR_COUNT = 600;
+
+
+/*
+    Tốc độ
+*/
+
+const STAR_SPEED = 3;
 
 
 /* =====================================================
@@ -1348,6 +1339,7 @@ function resizeCanvas() {
     height =
         canvas.height =
         window.innerHeight;
+
 
     centerX =
         width / 2;
@@ -1365,6 +1357,7 @@ function createStars() {
 
     stars = [];
 
+
     for (
         let i = 0;
         i < STAR_COUNT;
@@ -1374,12 +1367,12 @@ function createStars() {
         stars.push({
 
             x:
-                (Math.random() - 0.5)
+                (Math.random() - .5)
                 * width
                 * 2,
 
             y:
-                (Math.random() - 0.5)
+                (Math.random() - .5)
                 * height
                 * 2,
 
@@ -1394,6 +1387,7 @@ function createStars() {
         });
 
     }
+
 }
 
 
@@ -1403,8 +1397,12 @@ function createStars() {
 
 function drawStars() {
 
+    /*
+        Xóa nhẹ để tạo đuôi sao
+    */
+
     ctx.fillStyle =
-        "rgba(0,0,0,0.35)";
+        "rgba(0,0,0,.35)";
 
     ctx.fillRect(
         0,
@@ -1431,18 +1429,29 @@ function drawStars() {
             star.oldY;
 
 
-        star.z -= speed;
+        /*
+            Sao tiến về phía người xem
+        */
+
+        star.z -= STAR_SPEED;
 
 
-        if (star.z <= 1) {
+        /*
+            Sao ra khỏi màn hình
+            thì tạo lại phía xa
+        */
+
+        if (
+            star.z <= 1
+        ) {
 
             star.x =
-                (Math.random() - 0.5)
+                (Math.random() - .5)
                 * width
                 * 2;
 
             star.y =
-                (Math.random() - 0.5)
+                (Math.random() - .5)
                 * height
                 * 2;
 
@@ -1452,70 +1461,114 @@ function drawStars() {
         }
 
 
+        /*
+            Chiếu 3D -> 2D
+        */
+
         const screenX =
+
             centerX +
-            (star.x / star.z)
-            * 256;
+
+            (
+                star.x /
+                star.z
+            ) * 256;
 
 
         const screenY =
-            centerY +
-            (star.y / star.z)
-            * 256;
 
+            centerY +
+
+            (
+                star.y /
+                star.z
+            ) * 256;
+
+
+        /*
+            Kích thước sao
+        */
 
         const size =
+
             Math.max(
-                0.5,
-                (1 - star.z / width) * 3
+                .5,
+                (
+                    1 -
+                    star.z / width
+                ) * 3
             );
 
 
+        /*
+            Đuôi chuyển động
+        */
+
         if (
+
             oldX > 0 &&
             oldX < width &&
             oldY > 0 &&
             oldY < height
+
         ) {
 
             ctx.beginPath();
+
 
             ctx.moveTo(
                 oldX,
                 oldY
             );
 
+
             ctx.lineTo(
                 screenX,
                 screenY
             );
 
+
             ctx.strokeStyle =
-                "rgba(150,220,255,.8)";
+                "rgba(160,220,255,.75)";
+
 
             ctx.lineWidth =
                 size;
+
 
             ctx.stroke();
 
         }
 
 
+        /*
+            Vẽ điểm sao
+        */
+
         ctx.beginPath();
 
+
         ctx.arc(
+
             screenX,
             screenY,
             size,
             0,
             Math.PI * 2
+
         );
+
 
         ctx.fillStyle =
             "rgba(255,255,255,.95)";
 
+
         ctx.fill();
 
+
+        /*
+            Lưu vị trí
+        */
 
         star.oldX =
             screenX;
@@ -1529,32 +1582,12 @@ function drawStars() {
     requestAnimationFrame(
         drawStars
     );
+
 }
 
 
 /* =====================================================
-   CHUỘT LÀM SAO DI CHUYỂN
-===================================================== */
-
-let mouseX = 0;
-let mouseY = 0;
-
-window.addEventListener(
-    "mousemove",
-    function(event) {
-
-        mouseX =
-            event.clientX;
-
-        mouseY =
-            event.clientY;
-
-    }
-);
-
-
-/* =====================================================
-   KHỞI ĐỘNG SAO
+   KHỞI ĐỘNG CANVAS
 ===================================================== */
 
 window.addEventListener(
@@ -1586,25 +1619,30 @@ const audio =
         "audio"
     );
 
+
 const playBtn =
     document.getElementById(
         "playBtn"
     );
+
 
 const volumeBtn =
     document.getElementById(
         "volumeBtn"
     );
 
+
 const progressBar =
     document.getElementById(
         "progressBar"
     );
 
+
 const currentTime =
     document.getElementById(
         "currentTime"
     );
+
 
 const duration =
     document.getElementById(
@@ -1648,7 +1686,7 @@ function toggleMusic() {
 
 
 /* =====================================================
-   LOAD AUDIO
+   LOAD NHẠC
 ===================================================== */
 
 audio.addEventListener(
@@ -1665,7 +1703,7 @@ audio.addEventListener(
 
 
 /* =====================================================
-   TIẾN TRÌNH
+   THANH NHẠC
 ===================================================== */
 
 audio.addEventListener(
@@ -1797,7 +1835,7 @@ function nextSong() {
 
 
 /* =====================================================
-   FORMAT TIME
+   FORMAT THỜI GIAN
 ===================================================== */
 
 function formatTime(
@@ -1848,17 +1886,27 @@ function formatTime(
 
 function likeProfile() {
 
-    const likes =
-        document.getElementById(
-            "likes"
-        );
+    /*
+        Chỉ hiệu ứng nút,
+        không thay đổi 100K
+    */
+
+    const button =
+        event.currentTarget;
+
+    button.style.transform =
+        "scale(1.2)";
 
 
-    likes.innerHTML =
+    setTimeout(
+        function() {
 
-        parseInt(
-            likes.innerHTML
-        ) + 1;
+            button.style.transform =
+                "";
+
+        },
+        150
+    );
 
 }
 
