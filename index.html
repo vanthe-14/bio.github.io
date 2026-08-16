@@ -13,66 +13,63 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     min-height: 100%;
 }
 
 body {
     background: #000;
-    color: #fff;
+    color: white;
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
 
 /* ================= NỀN SAO ================= */
 
-.stars,
-.stars::before,
-.stars::after {
+.stars {
     position: fixed;
     inset: 0;
-    pointer-events: none;
     z-index: -1;
-    content: "";
-}
+    background-color: #000;
 
-.stars {
     background-image:
-        radial-gradient(circle, #fff 1px, transparent 1.5px),
-        radial-gradient(circle, #fff 1px, transparent 1.5px),
-        radial-gradient(circle, #fff 2px, transparent 2.5px);
+        radial-gradient(circle, white 1px, transparent 2px),
+        radial-gradient(circle, white 1px, transparent 2px),
+        radial-gradient(circle, white 1.5px, transparent 2.5px),
+        radial-gradient(circle, white 1px, transparent 2px);
+
     background-size:
-        90px 90px,
-        140px 140px,
-        220px 220px;
+        85px 85px,
+        135px 135px,
+        190px 190px,
+        260px 260px;
+
     background-position:
         10px 20px,
         40px 80px,
-        100px 30px;
-    opacity: .85;
+        100px 30px,
+        150px 120px;
+
+    animation: starsMove 25s linear infinite;
 }
 
-.stars::before {
-    background-image:
-        radial-gradient(circle, #fff 1px, transparent 2px),
-        radial-gradient(circle, #fff 1px, transparent 2px);
-    background-size:
-        170px 170px,
-        250px 250px;
-    background-position:
-        60px 20px,
-        120px 100px;
-    animation: moveStars 30s linear infinite;
-}
-
-@keyframes moveStars {
+@keyframes starsMove {
     from {
-        transform: translateY(0);
+        background-position:
+            10px 20px,
+            40px 80px,
+            100px 30px,
+            150px 120px;
     }
 
     to {
-        transform: translateY(120px);
+        background-position:
+            80px 100px,
+            120px 150px,
+            180px 100px,
+            230px 200px;
     }
 }
 
@@ -82,70 +79,104 @@ body {
     width: 100%;
     max-width: 720px;
     min-height: 100vh;
+
     margin: auto;
-    padding: 28px 24px 60px;
+
+    padding: 35px 25px 70px;
 }
 
 /* ================= NÚT TRÊN ================= */
 
 .top-buttons {
     display: flex;
-    gap: 10px;
-    margin-bottom: 100px;
+    gap: 12px;
+
+    margin-bottom: 90px;
 }
 
-.top-btn {
+.top-button {
     width: 60px;
     height: 60px;
 
     border: none;
     border-radius: 16px;
 
-    background: rgba(12, 12, 12, .9);
+    background: rgba(15, 15, 15, 0.9);
 
     color: white;
+
     font-size: 28px;
 
     cursor: pointer;
 
-    transition: .2s;
+    transition: 0.2s;
 }
 
-.top-btn:hover {
-    background: #181818;
-    transform: scale(1.05);
+.top-button:hover {
+    transform: scale(1.06);
+    background: #1a1a1a;
 }
 
 /* ================= PROFILE ================= */
 
 .profile {
-    width: 100%;
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
     margin-bottom: 25px;
 }
 
+/* ẢNH */
+
+.avatar {
+    width: 180px;
+    height: 180px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 35px;
+
+    display: block;
+
+    box-shadow:
+        0 0 12px #008cff,
+        0 0 30px #008cff,
+        0 0 55px rgba(0, 140, 255, 0.45);
+}
+
+/* THÔNG TIN */
+
 .info {
-    width: 100%;
+    flex: 1;
 }
 
 .name {
     color: #00aaff;
 
-    font-size: 54px;
+    font-size: 52px;
+
     font-weight: 700;
+
+    line-height: 1.05;
+
+    margin-bottom: 18px;
 
     text-shadow:
         0 0 8px #0088ff,
         0 0 20px #0088ff,
-        0 0 35px rgba(0, 136, 255, .7);
-
-    margin-bottom: 16px;
+        0 0 35px rgba(0, 136, 255, 0.7);
 }
 
 .bio {
     color: #999;
 
     font-size: 20px;
-    line-height: 1.45;
+
+    line-height: 1.5;
 
     font-style: italic;
 }
@@ -156,8 +187,8 @@ body {
     display: flex;
     justify-content: center;
 
-    margin-top: 28px;
-    margin-bottom: 24px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .discord-icon {
@@ -168,14 +199,16 @@ body {
     align-items: center;
     justify-content: center;
 
-    background: #fff;
+    background: white;
+
     color: #555;
 
     border-radius: 50%;
 
-    font-size: 28px;
+    font-size: 27px;
 
-    box-shadow: 0 0 18px rgba(255,255,255,.25);
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.25);
 }
 
 /* ================= THÔNG TIN ================= */
@@ -189,9 +222,9 @@ body {
 
     margin-bottom: 60px;
 
-    color: #00aaff;
-
     font-size: 18px;
+
+    color: #00aaff;
 }
 
 .stats .separator {
@@ -204,98 +237,117 @@ body {
 
 /* ================= MUSIC ================= */
 
-.music-box {
+.music {
     width: 100%;
 }
 
+/* Tên bài */
+
 .song-title {
     font-size: 29px;
+
     font-weight: 500;
 
     margin-bottom: 16px;
 }
 
+/* Thanh điều khiển */
+
 .music-controls {
+    width: 100%;
+
     display: flex;
     align-items: center;
-    gap: 12px;
+
+    gap: 10px;
 }
+
+/* Thời gian */
 
 .time {
     width: 38px;
 
-    font-size: 14px;
-    color: #eee;
+    flex-shrink: 0;
 
     text-align: center;
+
+    font-size: 14px;
+
+    color: white;
 }
+
+/* Thanh tiến trình */
 
 .progress-container {
     flex: 1;
 
-    height: 9px;
+    height: 8px;
 
     background: #777;
 
     border-radius: 20px;
 
-    cursor: pointer;
+    overflow: hidden;
 
-    position: relative;
+    cursor: pointer;
 }
 
 .progress-bar {
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
     width: 0%;
+
     height: 100%;
 
-    background: #fff;
+    background: white;
 
     border-radius: 20px;
+
+    transition: width 0.1s linear;
 }
+
+/* Nút nhạc */
 
 .music-buttons {
     display: flex;
     align-items: center;
-    gap: 10px;
+
+    gap: 8px;
 }
 
-.music-btn {
+.music-button {
     width: 40px;
     height: 40px;
 
     border: none;
+
     background: transparent;
 
     color: white;
 
-    font-size: 24px;
+    font-size: 23px;
 
     cursor: pointer;
 }
 
-.play-btn {
+.play-button {
     width: 58px;
     height: 58px;
 
     border: none;
+
     border-radius: 50%;
 
-    background: #fff;
-    color: #000;
+    background: white;
+
+    color: black;
 
     font-size: 22px;
 
     cursor: pointer;
 
-    transition: .2s;
+    transition: 0.2s;
 }
 
-.play-btn:hover {
+.play-button:hover {
     transform: scale(1.08);
 }
 
@@ -304,33 +356,49 @@ body {
 @media (max-width: 600px) {
 
     .container {
-        padding: 22px 20px 50px;
+        padding: 25px 20px 50px;
     }
 
     .top-buttons {
-        margin-bottom: 90px;
+        margin-bottom: 75px;
     }
 
-    .top-btn {
-        width: 56px;
-        height: 56px;
+    .top-button {
+        width: 55px;
+        height: 55px;
+
+        font-size: 25px;
+    }
+
+    .profile {
+        gap: 17px;
+    }
+
+    .avatar {
+        width: 135px;
+        height: 135px;
+
+        border-radius: 28px;
     }
 
     .name {
-        font-size: 42px;
+        font-size: 39px;
     }
 
     .bio {
         font-size: 16px;
     }
 
-    .discord {
-        margin-top: 24px;
+    .discord-icon {
+        width: 54px;
+        height: 54px;
     }
 
     .stats {
         font-size: 16px;
+
         gap: 9px;
+
         margin-bottom: 50px;
     }
 
@@ -339,24 +407,40 @@ body {
     }
 
     .music-controls {
-        gap: 6px;
+        gap: 5px;
     }
 
-    .music-btn {
+    .time {
         width: 32px;
-        font-size: 20px;
+
+        font-size: 12px;
     }
 
-    .play-btn {
-        width: 52px;
-        height: 52px;
+    .music-button {
+        width: 32px;
+
+        font-size: 19px;
+    }
+
+    .play-button {
+        width: 50px;
+        height: 50px;
+
+        font-size: 19px;
     }
 }
 
+/* ================= ĐIỆN THOẠI NHỎ ================= */
+
 @media (max-width: 420px) {
 
+    .avatar {
+        width: 110px;
+        height: 110px;
+    }
+
     .name {
-        font-size: 36px;
+        font-size: 32px;
     }
 
     .bio {
@@ -365,6 +449,10 @@ body {
 
     .stats {
         font-size: 14px;
+    }
+
+    .song-title {
+        font-size: 23px;
     }
 }
 </style>
@@ -376,19 +464,19 @@ body {
 
 <div class="container">
 
-    <!-- NÚT TRÊN -->
+    <!-- ================= NÚT TRÊN ================= -->
 
     <div class="top-buttons">
 
         <button
-            class="top-btn"
-            id="volumeBtn"
+            class="top-button"
+            id="volumeButton"
             onclick="toggleMusic()">
             🔊
         </button>
 
         <button
-            class="top-btn"
+            class="top-button"
             onclick="likeProfile()">
             ♥
         </button>
@@ -396,9 +484,16 @@ body {
     </div>
 
 
-    <!-- TÊN -->
+    <!-- ================= PROFILE ================= -->
 
     <div class="profile">
+
+        <!-- FILE TRONG GITHUB CỦA BẠN -->
+        <img
+            src="avtar.jpeg"
+            alt="Mai Văn Thế"
+            class="avatar"
+        >
 
         <div class="info">
 
@@ -415,7 +510,7 @@ body {
     </div>
 
 
-    <!-- DISCORD -->
+    <!-- ================= DISCORD ================= -->
 
     <div class="discord">
 
@@ -426,21 +521,25 @@ body {
     </div>
 
 
-    <!-- THÔNG TIN -->
+    <!-- ================= THÔNG TIN ================= -->
 
     <div class="stats">
 
         <b>
-            ♥ <span id="likes">10000</span>
+            ♥ <span id="likes">1</span>
         </b>
 
-        <span class="separator">|</span>
+        <span class="separator">
+            |
+        </span>
 
         <b>
-            14/3
+            ◉ 87
         </b>
 
-        <span class="separator">|</span>
+        <span class="separator">
+            |
+        </span>
 
         <b class="location">
             Hà Nội
@@ -449,13 +548,14 @@ body {
     </div>
 
 
-    <!-- NHẠC -->
+    <!-- ================= MUSIC ================= -->
 
-    <div class="music-box">
+    <div class="music">
 
         <div class="song-title">
             Promise
         </div>
+
 
         <div class="music-controls">
 
@@ -464,6 +564,7 @@ body {
                 id="currentTime">
                 0:00
             </span>
+
 
             <div
                 class="progress-container"
@@ -476,29 +577,33 @@ body {
 
             </div>
 
+
             <span
                 class="time"
                 id="duration">
                 0:00
             </span>
 
+
             <div class="music-buttons">
 
                 <button
-                    class="music-btn"
+                    class="music-button"
                     onclick="previousSong()">
                     ⏮
                 </button>
 
+
                 <button
-                    class="play-btn"
-                    id="playBtn"
+                    class="play-button"
+                    id="playButton"
                     onclick="toggleMusic()">
                     ▶
                 </button>
 
+
                 <button
-                    class="music-btn"
+                    class="music-button"
                     onclick="nextSong()">
                     ⏭
                 </button>
@@ -512,21 +617,26 @@ body {
 </div>
 
 
-<!-- NHẠC -->
+<!-- ================= AUDIO ================= -->
 
-<audio id="audio" src="Promise.mp3"></audio>
+<audio
+    id="audio"
+    src="Promise.mp3">
+</audio>
 
 
 <script>
 
+/* ================= LẤY ELEMENT ================= */
+
 const audio =
     document.getElementById("audio");
 
-const playBtn =
-    document.getElementById("playBtn");
+const playButton =
+    document.getElementById("playButton");
 
-const volumeBtn =
-    document.getElementById("volumeBtn");
+const volumeButton =
+    document.getElementById("volumeButton");
 
 const progressBar =
     document.getElementById("progressBar");
@@ -538,28 +648,31 @@ const duration =
     document.getElementById("duration");
 
 
+/* ================= PLAY / PAUSE ================= */
+
 function toggleMusic() {
 
     if (audio.paused) {
 
         audio.play();
 
-        playBtn.innerHTML = "Ⅱ";
+        playButton.innerHTML = "Ⅱ";
 
-        volumeBtn.innerHTML = "🔊";
+        volumeButton.innerHTML = "🔊";
 
     } else {
 
         audio.pause();
 
-        playBtn.innerHTML = "▶";
+        playButton.innerHTML = "▶";
 
-        volumeBtn.innerHTML = "🔇";
+        volumeButton.innerHTML = "🔇";
 
     }
-
 }
 
+
+/* ================= THỜI LƯỢNG ================= */
 
 audio.addEventListener(
     "loadedmetadata",
@@ -572,11 +685,15 @@ audio.addEventListener(
 );
 
 
+/* ================= THANH NHẠC ================= */
+
 audio.addEventListener(
     "timeupdate",
     function() {
 
-        if (!audio.duration) return;
+        if (!audio.duration) {
+            return;
+        }
 
         const percent =
             (audio.currentTime / audio.duration) * 100;
@@ -591,13 +708,15 @@ audio.addEventListener(
 );
 
 
+/* ================= KẾT THÚC ================= */
+
 audio.addEventListener(
     "ended",
     function() {
 
-        playBtn.innerHTML = "▶";
+        playButton.innerHTML = "▶";
 
-        volumeBtn.innerHTML = "🔊";
+        volumeButton.innerHTML = "🔊";
 
         progressBar.style.width = "0%";
 
@@ -607,9 +726,13 @@ audio.addEventListener(
 );
 
 
+/* ================= CLICK THANH NHẠC ================= */
+
 function seekMusic(event) {
 
-    if (!audio.duration) return;
+    if (!audio.duration) {
+        return;
+    }
 
     const rect =
         event.currentTarget.getBoundingClientRect();
@@ -626,6 +749,8 @@ function seekMusic(event) {
 }
 
 
+/* ================= PREVIOUS ================= */
+
 function previousSong() {
 
     audio.currentTime = 0;
@@ -633,18 +758,22 @@ function previousSong() {
 }
 
 
+/* ================= NEXT ================= */
+
 function nextSong() {
 
     audio.currentTime = 0;
 
     audio.play();
 
-    playBtn.innerHTML = "Ⅱ";
+    playButton.innerHTML = "Ⅱ";
 
-    volumeBtn.innerHTML = "🔊";
+    volumeButton.innerHTML = "🔊";
 
 }
 
+
+/* ================= FORMAT TIME ================= */
 
 function formatTime(seconds) {
 
@@ -665,6 +794,8 @@ function formatTime(seconds) {
 }
 
 
+/* ================= LIKE ================= */
+
 function likeProfile() {
 
     const likes =
@@ -675,7 +806,8 @@ function likeProfile() {
 
     number++;
 
-    likes.innerText = number;
+    likes.innerText =
+        number;
 
 }
 
