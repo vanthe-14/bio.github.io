@@ -8,9 +8,9 @@
 
 <style>
 
-/* ================================================= */
-/*                    CƠ BẢN                         */
-/* ================================================= */
+/* =====================================================
+   CƠ BẢN
+===================================================== */
 
 * {
     margin: 0;
@@ -32,67 +32,36 @@ body {
 }
 
 
-/* ================================================= */
-/*                    NỀN SAO                        */
-/* ================================================= */
+/* =====================================================
+   CANVAS SAO 3D
+===================================================== */
 
-body::before {
-    content: "";
+#starfield {
 
     position: fixed;
-    inset: 0;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
 
     z-index: -10;
 
-    background-color: #000;
+    background: #000;
 
-    background-image:
-        radial-gradient(circle, white 1px, transparent 2px),
-        radial-gradient(circle, white 1px, transparent 2px),
-        radial-gradient(circle, white 1.5px, transparent 2.5px),
-        radial-gradient(circle, white 1px, transparent 2px);
-
-    background-size:
-        90px 90px,
-        140px 140px,
-        200px 200px,
-        270px 270px;
-
-    background-position:
-        10px 20px,
-        50px 80px,
-        100px 30px,
-        150px 120px;
-
-    animation: starsMove 30s linear infinite;
+    pointer-events: none;
 }
 
 
-@keyframes starsMove {
-
-    from {
-        background-position:
-            10px 20px,
-            50px 80px,
-            100px 30px,
-            150px 120px;
-    }
-
-    to {
-        background-position:
-            100px 120px,
-            150px 180px,
-            200px 100px,
-            250px 220px;
-    }
-}
-
-
-/* ================================================= */
-/*                    CONTAINER                      */
-/* ================================================= */
+/* =====================================================
+   NÚT TRÊN
+===================================================== */
 
 .container {
+
+    position: relative;
+
     width: 100%;
 
     max-width: 720px;
@@ -101,24 +70,24 @@ body::before {
 
     margin: auto;
 
-    padding: 30px 25px 70px;
+    padding: 30px 25px 50px;
+
+    z-index: 2;
 }
 
 
-/* ================================================= */
-/*                    NÚT TRÊN                       */
-/* ================================================= */
-
 .top {
+
     display: flex;
 
     gap: 12px;
 
-    margin-bottom: 90px;
+    margin-bottom: 75px;
 }
 
 
 .top button {
+
     width: 60px;
     height: 60px;
 
@@ -126,46 +95,50 @@ body::before {
 
     border-radius: 16px;
 
-    background: rgba(15,15,15,0.9);
+    background: rgba(15,15,15,.9);
 
     color: white;
 
-    font-size: 28px;
+    font-size: 27px;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: .2s;
 }
 
 
 .top button:hover {
+
     transform: scale(1.06);
 
-    background: #181818;
+    background: rgba(30,30,30,.95);
 }
 
 
-/* ================================================= */
-/*                    PROFILE                        */
-/* ================================================= */
+/* =====================================================
+   PROFILE
+===================================================== */
 
 .profile {
+
     display: flex;
 
     align-items: center;
 
-    gap: 25px;
+    gap: 24px;
 
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 
-/* ================================================= */
-/*                    AVATAR                         */
-/* ================================================= */
+/* =====================================================
+   AVATAR
+===================================================== */
 
 .avatar {
+
     width: 180px;
+
     height: 180px;
 
     flex-shrink: 0;
@@ -179,22 +152,27 @@ body::before {
     background: #111;
 
     box-shadow:
+
         0 0 12px #008cff,
+
         0 0 30px #008cff,
-        0 0 60px rgba(0,140,255,0.5);
+
+        0 0 60px rgba(0,140,255,.5);
 }
 
 
-/* ================================================= */
-/*                    THÔNG TIN                      */
-/* ================================================= */
+/* =====================================================
+   TÊN
+===================================================== */
 
 .info {
+
     flex: 1;
 }
 
 
 .name {
+
     font-size: 50px;
 
     font-weight: bold;
@@ -203,16 +181,20 @@ body::before {
 
     color: #00aaff;
 
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 
     text-shadow:
+
         0 0 8px #0088ff,
+
         0 0 20px #0088ff,
-        0 0 35px rgba(0,136,255,0.8);
+
+        0 0 35px rgba(0,136,255,.8);
 }
 
 
 .bio {
+
     color: #999;
 
     font-size: 20px;
@@ -223,21 +205,24 @@ body::before {
 }
 
 
-/* ================================================= */
-/*                    DISCORD                        */
-/* ================================================= */
+/* =====================================================
+   ICON
+===================================================== */
 
 .discord {
+
     display: flex;
 
     justify-content: center;
 
-    margin: 25px 0;
+    margin: 20px 0;
 }
 
 
 .discord-icon {
+
     width: 58px;
+
     height: 58px;
 
     border-radius: 50%;
@@ -255,57 +240,533 @@ body::before {
     font-size: 27px;
 
     box-shadow:
-        0 0 18px rgba(255,255,255,0.3);
+
+        0 0 18px rgba(255,255,255,.3);
 }
 
 
-/* ================================================= */
-/*                    STATS                          */
-/* ================================================= */
+/* =====================================================
+   THỐNG KÊ
+===================================================== */
 
 .stats {
-    display: flex;
 
-    align-items: center;
+    display: flex;
 
     justify-content: center;
 
+    align-items: center;
+
     gap: 14px;
 
-    margin-bottom: 60px;
+    color: #00aaff;
 
     font-size: 18px;
 
-    color: #00aaff;
+    margin-bottom: 25px;
 }
 
 
 .separator {
+
     color: #777;
 }
 
 
-/* ================================================= */
-/*                    MUSIC                          */
-/* ================================================= */
+/* =====================================================
+   KHU VỰC THUYỀN
+===================================================== */
+
+.boat-section {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 260px;
+
+    margin-bottom: 5px;
+
+    overflow: hidden;
+}
+
+
+/* ánh sáng trên biển */
+
+.boat-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 70px;
+
+    transform: translateX(-50%);
+
+    width: 330px;
+
+    height: 90px;
+
+    background:
+
+        rgba(0,140,255,.13);
+
+    border-radius: 50%;
+
+    filter: blur(30px);
+}
+
+
+/* =====================================================
+   THUYỀN
+===================================================== */
+
+.sailing-boat {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 38px;
+
+    width: 410px;
+
+    height: 225px;
+
+    transform: translateX(-50%);
+
+    animation:
+
+        boatFloat 4s ease-in-out infinite;
+
+    z-index: 5;
+}
+
+
+@keyframes boatFloat {
+
+    0% {
+
+        transform:
+
+            translateX(-50%)
+
+            translateY(0)
+
+            rotate(-2deg);
+    }
+
+    50% {
+
+        transform:
+
+            translateX(-50%)
+
+            translateY(8px)
+
+            rotate(2deg);
+    }
+
+    100% {
+
+        transform:
+
+            translateX(-50%)
+
+            translateY(0)
+
+            rotate(-2deg);
+    }
+}
+
+
+/* =====================================================
+   CỘT BUỒM
+===================================================== */
+
+.mast {
+
+    position: absolute;
+
+    left: 200px;
+
+    bottom: 55px;
+
+    width: 7px;
+
+    height: 195px;
+
+    background:
+
+        linear-gradient(
+
+            to right,
+
+            #444,
+
+            #fff,
+
+            #555
+
+        );
+
+    border-radius: 5px;
+
+    box-shadow:
+
+        0 0 8px white,
+
+        0 0 15px rgba(255,255,255,.5);
+}
+
+
+/* =====================================================
+   BUỒM LỚN
+===================================================== */
+
+.main-sail {
+
+    position: absolute;
+
+    left: 45px;
+
+    bottom: 80px;
+
+    width: 0;
+
+    height: 0;
+
+    border-right:
+
+        145px solid transparent;
+
+    border-bottom:
+
+        175px solid #f5f5f5;
+
+    filter:
+
+        drop-shadow(
+
+            0 0 12px
+
+            rgba(255,255,255,.5)
+
+        );
+}
+
+
+/* =====================================================
+   BUỒM NHỎ
+===================================================== */
+
+.small-sail {
+
+    position: absolute;
+
+    left: 205px;
+
+    bottom: 90px;
+
+    width: 0;
+
+    height: 0;
+
+    border-left:
+
+        90px solid transparent;
+
+    border-bottom:
+
+        120px solid #777;
+
+    filter:
+
+        drop-shadow(
+
+            0 0 10px
+
+            rgba(0,140,255,.6)
+
+        );
+}
+
+
+/* =====================================================
+   CỜ
+===================================================== */
+
+.flag {
+
+    position: absolute;
+
+    left: 205px;
+
+    top: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-top:
+
+        12px solid transparent;
+
+    border-bottom:
+
+        12px solid transparent;
+
+    border-left:
+
+        45px solid #00aaff;
+
+    filter:
+
+        drop-shadow(
+
+            0 0 8px #008cff
+
+        );
+}
+
+
+/* =====================================================
+   THÂN THUYỀN
+===================================================== */
+
+.hull {
+
+    position: absolute;
+
+    left: 10px;
+
+    bottom: 10px;
+
+    width: 390px;
+
+    height: 62px;
+
+    background:
+
+        linear-gradient(
+
+            to bottom,
+
+            #444,
+
+            #151515,
+
+            #000
+
+        );
+
+    clip-path:
+
+        polygon(
+
+            0 0,
+
+            100% 0,
+
+            82% 100%,
+
+            15% 100%
+
+        );
+
+    border-bottom:
+
+        4px solid #008cff;
+
+    box-shadow:
+
+        0 0 15px #008cff,
+
+        0 0 30px rgba(0,140,255,.6);
+}
+
+
+/* =====================================================
+   MẶT NƯỚC
+===================================================== */
+
+.water {
+
+    position: absolute;
+
+    left: -10%;
+
+    bottom: 25px;
+
+    width: 120%;
+
+    height: 90px;
+
+    z-index: 3;
+
+    background:
+
+        repeating-linear-gradient(
+
+            -5deg,
+
+            transparent 0,
+
+            transparent 12px,
+
+            rgba(0,140,255,.35) 14px,
+
+            transparent 17px
+
+        );
+
+    animation:
+
+        waterMove 5s linear infinite;
+}
+
+
+@keyframes waterMove {
+
+    from {
+
+        transform:
+            translateX(0);
+    }
+
+    to {
+
+        transform:
+            translateX(-100px);
+    }
+}
+
+
+/* =====================================================
+   SÓNG
+===================================================== */
+
+.wave {
+
+    position: absolute;
+
+    height: 14px;
+
+    border-top:
+
+        3px solid #008cff;
+
+    border-radius: 50%;
+
+    filter:
+
+        drop-shadow(
+
+            0 0 7px #008cff
+
+        );
+
+    z-index: 10;
+
+    animation:
+
+        waveMove 3s ease-in-out infinite;
+}
+
+
+.wave1 {
+
+    width: 180px;
+
+    left: 0;
+
+    bottom: 32px;
+}
+
+
+.wave2 {
+
+    width: 240px;
+
+    left: 25%;
+
+    bottom: 50px;
+
+    animation-delay: .5s;
+}
+
+
+.wave3 {
+
+    width: 190px;
+
+    right: 0;
+
+    bottom: 30px;
+
+    animation-delay: 1s;
+}
+
+
+@keyframes waveMove {
+
+    0% {
+
+        transform:
+
+            translateX(-20px)
+
+            scaleX(.9);
+    }
+
+    50% {
+
+        transform:
+
+            translateX(20px)
+
+            scaleX(1.1);
+    }
+
+    100% {
+
+        transform:
+
+            translateX(-20px)
+
+            scaleX(.9);
+    }
+}
+
+
+/* =====================================================
+   NHẠC
+===================================================== */
 
 .song-title {
+
     font-size: 29px;
 
-    margin-bottom: 16px;
+    margin-bottom: 15px;
 }
 
 
 .music-controls {
+
+    width: 100%;
+
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 9px;
 }
 
 
 .time {
+
     width: 38px;
 
     flex-shrink: 0;
@@ -313,15 +774,14 @@ body::before {
     text-align: center;
 
     font-size: 14px;
-
-    color: white;
 }
 
 
 .progress {
+
     flex: 1;
 
-    height: 8px;
+    height: 9px;
 
     background: #777;
 
@@ -334,6 +794,7 @@ body::before {
 
 
 .progress-bar {
+
     width: 0%;
 
     height: 100%;
@@ -341,23 +802,24 @@ body::before {
     background: white;
 
     border-radius: 20px;
-
-    transition: width 0.1s linear;
 }
 
 
 .buttons {
+
     display: flex;
 
     align-items: center;
 
-    gap: 8px;
+    gap: 7px;
 }
 
 
 .music-btn {
-    width: 40px;
-    height: 40px;
+
+    width: 38px;
+
+    height: 38px;
 
     border: none;
 
@@ -365,15 +827,17 @@ body::before {
 
     color: white;
 
-    font-size: 23px;
+    font-size: 22px;
 
     cursor: pointer;
 }
 
 
 .play-btn {
-    width: 58px;
-    height: 58px;
+
+    width: 56px;
+
+    height: 56px;
 
     border: none;
 
@@ -383,537 +847,37 @@ body::before {
 
     color: black;
 
-    font-size: 22px;
+    font-size: 21px;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: .2s;
 }
 
 
 .play-btn:hover {
+
     transform: scale(1.08);
 }
 
 
-/* ================================================= */
-/*              KHU VỰC THUYỀN + BIỂN               */
-/* ================================================= */
-
-.ocean {
-
-    position: relative;
-
-    width: 100%;
-
-    height: 370px;
-
-    margin-top: 45px;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(0,50,100,0.05) 25%,
-            rgba(0,80,140,0.16) 55%,
-            rgba(0,100,180,0.28) 100%
-        );
-
-}
-
-
-/* ================================================= */
-/*              ÁNH SÁNG TRÊN MẶT NƯỚC              */
-/* ================================================= */
-
-.moon-light {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 40px;
-
-    transform: translateX(-50%);
-
-    width: 300px;
-
-    height: 90px;
-
-    background:
-        rgba(0,140,255,0.13);
-
-    filter: blur(28px);
-
-    border-radius: 50%;
-
-}
-
-
-/* ================================================= */
-/*              THUYỀN ĐANG LƯỚT                    */
-/* ================================================= */
-
-.sailing-boat {
-
-    position: absolute;
-
-    left: 50%;
-
-    bottom: 150px;
-
-    width: 410px;
-
-    height: 270px;
-
-    transform:
-        translateX(-50%)
-        rotate(-2deg);
-
-    animation:
-        boatFloat 4s ease-in-out infinite;
-
-    z-index: 5;
-}
-
-
-/* ================================================= */
-/*              THUYỀN NHẤP NHÔ                     */
-/* ================================================= */
-
-@keyframes boatFloat {
-
-    0% {
-
-        transform:
-            translateX(-50%)
-            translateY(0)
-            rotate(-2deg);
-
-    }
-
-    50% {
-
-        transform:
-            translateX(-50%)
-            translateY(8px)
-            rotate(1deg);
-
-    }
-
-    100% {
-
-        transform:
-            translateX(-50%)
-            translateY(0)
-            rotate(-2deg);
-
-    }
-}
-
-
-/* ================================================= */
-/*                    THÂN THUYỀN                   */
-/* ================================================= */
-
-.boat-hull {
-
-    position: absolute;
-
-    left: 20px;
-
-    bottom: 5px;
-
-    width: 370px;
-
-    height: 70px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #444 0%,
-            #222 40%,
-            #080808 100%
-        );
-
-    clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            82% 100%,
-            15% 100%
-        );
-
-    border-bottom:
-        4px solid #008cff;
-
-    box-shadow:
-        0 0 12px #008cff,
-        0 0 25px rgba(0,140,255,0.7);
-}
-
-
-/* ================================================= */
-/*                    CABIN                          */
-/* ================================================= */
-
-.boat-cabin {
-
-    position: absolute;
-
-    left: 160px;
-
-    bottom: 60px;
-
-    width: 95px;
-
-    height: 45px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #333,
-            #111
-        );
-
-    border-top:
-        3px solid #00aaff;
-
-    border-radius:
-        10px 10px 0 0;
-
-    box-shadow:
-        0 0 12px rgba(0,140,255,0.5);
-}
-
-
-/* CỬA SỔ CABIN */
-
-.boat-cabin::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 25px;
-
-    top: 10px;
-
-    width: 45px;
-
-    height: 21px;
-
-    background: #008cff;
-
-    opacity: 0.7;
-
-    box-shadow:
-        0 0 12px #008cff;
-
-}
-
-
-/* ================================================= */
-/*                    CỘT BUỒM                      */
-/* ================================================= */
-
-.boat-mast {
-
-    position: absolute;
-
-    left: 200px;
-
-    bottom: 58px;
-
-    width: 7px;
-
-    height: 210px;
-
-    background:
-        linear-gradient(
-            to right,
-            #444,
-            #fff,
-            #555
-        );
-
-    border-radius: 5px;
-
-    box-shadow:
-        0 0 8px white,
-        0 0 15px rgba(255,255,255,0.5);
-}
-
-
-/* ================================================= */
-/*                    BUỒM LỚN                      */
-/* ================================================= */
-
-.main-sail {
-
-    position: absolute;
-
-    left: 70px;
-
-    bottom: 88px;
-
-    width: 0;
-
-    height: 0;
-
-    border-right:
-        135px solid transparent;
-
-    border-bottom:
-        175px solid #f5f5f5;
-
-    filter:
-        drop-shadow(
-            0 0 12px
-            rgba(255,255,255,0.5)
-        );
-}
-
-
-/* ================================================= */
-/*                    BUỒM NHỎ                      */
-/* ================================================= */
-
-.small-sail {
-
-    position: absolute;
-
-    left: 207px;
-
-    bottom: 98px;
-
-    width: 0;
-
-    height: 0;
-
-    border-left:
-        95px solid transparent;
-
-    border-bottom:
-        130px solid #777;
-
-    filter:
-        drop-shadow(
-            0 0 12px
-            rgba(0,140,255,0.5)
-        );
-}
-
-
-/* ================================================= */
-/*                      CỜ                          */
-/* ================================================= */
-
-.boat-flag {
-
-    position: absolute;
-
-    left: 207px;
-
-    top: 0;
-
-    width: 0;
-
-    height: 0;
-
-    border-top:
-        13px solid transparent;
-
-    border-bottom:
-        13px solid transparent;
-
-    border-left:
-        45px solid #00aaff;
-
-    filter:
-        drop-shadow(
-            0 0 8px #008cff
-        );
-}
-
-
-/* ================================================= */
-/*                    MẶT NƯỚC                      */
-/* ================================================= */
-
-.ocean::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: -10%;
-
-    bottom: 25px;
-
-    width: 120%;
-
-    height: 170px;
-
-    background:
-        repeating-linear-gradient(
-            -5deg,
-            transparent 0px,
-            transparent 14px,
-            rgba(0,140,255,0.35) 15px,
-            transparent 18px
-        );
-
-    opacity: 0.8;
-
-    animation:
-        waterMove 6s linear infinite;
-
-}
-
-
-@keyframes waterMove {
-
-    from {
-        transform:
-            translateX(0);
-    }
-
-    to {
-        transform:
-            translateX(-90px);
-    }
-
-}
-
-
-/* ================================================= */
-/*                    SÓNG                          */
-/* ================================================= */
-
-.water-wave {
-
-    position: absolute;
-
-    height: 15px;
-
-    border-top:
-        3px solid #008cff;
-
-    border-radius: 50%;
-
-    filter:
-        drop-shadow(
-            0 0 6px #008cff
-        );
-
-    z-index: 8;
-
-    animation:
-        waveMove 3s ease-in-out infinite;
-}
-
-
-.wave-a {
-
-    width: 170px;
-
-    left: 2%;
-
-    bottom: 85px;
-
-}
-
-
-.wave-b {
-
-    width: 220px;
-
-    left: 27%;
-
-    bottom: 105px;
-
-    animation-delay:
-        0.5s;
-}
-
-
-.wave-c {
-
-    width: 180px;
-
-    right: 0%;
-
-    bottom: 75px;
-
-    animation-delay:
-        1s;
-}
-
-
-.wave-d {
-
-    width: 140px;
-
-    left: 50%;
-
-    bottom: 48px;
-
-    animation-delay:
-        1.5s;
-}
-
-
-@keyframes waveMove {
-
-    0% {
-
-        transform:
-            translateX(-25px)
-            scaleX(0.9);
-
-    }
-
-    50% {
-
-        transform:
-            translateX(25px)
-            scaleX(1.1);
-
-    }
-
-    100% {
-
-        transform:
-            translateX(-25px)
-            scaleX(0.9);
-
-    }
-
-}
-
-
-/* ================================================= */
-/*                    MOBILE                         */
-/* ================================================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 600px) {
 
     .container {
 
         padding:
-            25px 18px 50px;
 
+            25px 18px 40px;
     }
 
 
     .top {
 
-        margin-bottom:
-            70px;
-
+        margin-bottom: 65px;
     }
 
 
@@ -922,265 +886,134 @@ body::before {
         width: 55px;
 
         height: 55px;
-
-        font-size: 25px;
-
     }
 
 
     .profile {
 
-        gap: 15px;
-
+        gap: 14px;
     }
 
 
     .avatar {
 
-        width: 125px;
+        width: 120px;
 
-        height: 125px;
+        height: 120px;
 
         border-radius: 28px;
-
     }
 
 
     .name {
 
-        font-size: 35px;
-
+        font-size: 32px;
     }
 
 
     .bio {
 
-        font-size: 15px;
-
+        font-size: 14px;
     }
 
 
     .stats {
 
-        font-size: 15px;
+        font-size: 14px;
 
-        gap: 8px;
-
-        margin-bottom:
-            50px;
-
+        gap: 7px;
     }
 
 
-    .song-title {
+    .boat-section {
 
-        font-size: 25px;
-
-    }
-
-
-    .music-controls {
-
-        gap: 5px;
-
-    }
-
-
-    .time {
-
-        width: 32px;
-
-        font-size: 12px;
-
-    }
-
-
-    .music-btn {
-
-        width: 32px;
-
-        font-size: 18px;
-
-    }
-
-
-    .play-btn {
-
-        width: 50px;
-
-        height: 50px;
-
-        font-size: 19px;
-
-    }
-
-
-    /* THUYỀN MOBILE */
-
-    .ocean {
-
-        height: 290px;
-
-        margin-top: 35px;
-
-    }
-
-
-    .sailing-boat {
-
-        width: 315px;
-
-        height: 210px;
-
-        bottom: 115px;
-
-    }
-
-
-    .boat-hull {
-
-        width: 285px;
-
-        height: 53px;
-
-        left: 15px;
-
-    }
-
-
-    .boat-mast {
-
-        left: 153px;
-
-        height: 160px;
-
-        bottom: 45px;
-
-    }
-
-
-    .main-sail {
-
-        left: 45px;
-
-        bottom: 65px;
-
-        border-right-width:
-            103px;
-
-        border-bottom-width:
-            132px;
-
-    }
-
-
-    .small-sail {
-
-        left: 158px;
-
-        bottom: 70px;
-
-        border-left-width:
-            72px;
-
-        border-bottom-width:
-            100px;
-
-    }
-
-
-    .boat-flag {
-
-        left: 160px;
-
-    }
-
-
-    .boat-cabin {
-
-        left: 122px;
-
-        bottom: 45px;
-
-        width: 76px;
-
-        height: 35px;
-
-    }
-
-
-    .wave-a {
-
-        bottom: 65px;
-
-    }
-
-
-    .wave-b {
-
-        bottom: 85px;
-
-    }
-
-
-    .wave-c {
-
-        bottom: 55px;
-
-    }
-
-
-    .wave-d {
-
-        bottom: 35px;
-
-    }
-
-}
-
-
-/* ================================================= */
-/*                 ĐIỆN THOẠI NHỎ                   */
-/* ================================================= */
-
-@media (max-width: 420px) {
-
-    .avatar {
-
-        width: 105px;
-
-        height: 105px;
-
-    }
-
-
-    .name {
-
-        font-size: 30px;
-
-    }
-
-
-    .bio {
-
-        font-size: 13px;
-
-    }
-
-
-    .ocean {
-
-        height: 250px;
-
+        height: 225px;
     }
 
 
     .sailing-boat {
 
         transform:
-            translateX(-50%)
-            scale(0.82);
 
+            translateX(-50%)
+
+            scale(.82);
+    }
+
+
+    .song-title {
+
+        font-size: 25px;
+    }
+
+
+    .music-controls {
+
+        gap: 4px;
+    }
+
+
+    .time {
+
+        width: 30px;
+
+        font-size: 11px;
+    }
+
+
+    .music-btn {
+
+        width: 30px;
+
+        font-size: 17px;
+    }
+
+
+    .play-btn {
+
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 18px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE NHỎ
+===================================================== */
+
+@media (max-width: 420px) {
+
+    .avatar {
+
+        width: 100px;
+
+        height: 100px;
+    }
+
+
+    .name {
+
+        font-size: 28px;
+    }
+
+
+    .bio {
+
+        font-size: 12px;
+    }
+
+
+    .sailing-boat {
+
+        transform:
+
+            translateX(-50%)
+
+            scale(.68);
     }
 
 }
@@ -1192,14 +1025,23 @@ body::before {
 <body>
 
 
+<!-- =====================================================
+     CANVAS SAO 3D
+===================================================== -->
+
+<canvas id="starfield"></canvas>
+
+
+
 <div class="container">
 
 
-    <!-- ================================================= -->
-    <!--                    NÚT TRÊN                        -->
-    <!-- ================================================= -->
+    <!-- =================================================
+         NÚT
+    ================================================= -->
 
     <div class="top">
+
 
         <button
             id="volumeBtn"
@@ -1217,21 +1059,26 @@ body::before {
 
         </button>
 
+
     </div>
 
 
 
-    <!-- ================================================= -->
-    <!--                    PROFILE                         -->
-    <!-- ================================================= -->
+    <!-- =================================================
+         PROFILE
+    ================================================= -->
 
     <div class="profile">
 
 
         <img
+
             class="avatar"
+
             src="https://raw.githubusercontent.com/vanthe-14/vanthe.github.io/main/avatar.jpeg"
+
             alt="Mai Văn Thế"
+
         >
 
 
@@ -1259,9 +1106,9 @@ body::before {
 
 
 
-    <!-- ================================================= -->
-    <!--                    DISCORD                         -->
-    <!-- ================================================= -->
+    <!-- =================================================
+         ICON
+    ================================================= -->
 
     <div class="discord">
 
@@ -1275,37 +1122,38 @@ body::before {
 
 
 
-    <!-- ================================================= -->
-    <!--                    THỐNG KÊ                       -->
-    <!-- ================================================= -->
+    <!-- =================================================
+         THỐNG KÊ
+    ================================================= -->
 
     <div class="stats">
 
 
         <b>
 
-            ♥
-            <span id="likes">
-                1
-            </span>
+            ♥ <span id="likes">100k</span>
 
         </b>
 
 
         <span class="separator">
+
             |
+
         </span>
 
 
         <b>
 
-            ◉ 87
+            ◉ 14/3
 
         </b>
 
 
         <span class="separator">
+
             |
+
         </span>
 
 
@@ -1320,16 +1168,57 @@ body::before {
 
 
 
-    <!-- ================================================= -->
-    <!--                    NHẠC                           -->
-    <!-- ================================================= -->
+    <!-- =================================================
+         THUYỀN
+    ================================================= -->
+
+    <div class="boat-section">
+
+
+        <div class="sailing-boat">
+
+
+            <div class="flag"></div>
+
+
+            <div class="main-sail"></div>
+
+
+            <div class="small-sail"></div>
+
+
+            <div class="mast"></div>
+
+
+            <div class="hull"></div>
+
+
+        </div>
+
+
+        <div class="water"></div>
+
+
+        <div class="wave wave1"></div>
+
+        <div class="wave wave2"></div>
+
+        <div class="wave wave3"></div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         NHẠC
+    ================================================= -->
 
     <div class="song-title">
 
         Promise
 
     </div>
-
 
 
     <div class="music-controls">
@@ -1344,7 +1233,6 @@ body::before {
         </span>
 
 
-
         <div
             class="progress"
             onclick="seekMusic(event)">
@@ -1353,11 +1241,11 @@ body::before {
             <div
                 class="progress-bar"
                 id="progressBar">
+
             </div>
 
 
         </div>
-
 
 
         <span
@@ -1367,7 +1255,6 @@ body::before {
             0:00
 
         </span>
-
 
 
         <div class="buttons">
@@ -1382,7 +1269,6 @@ body::before {
             </button>
 
 
-
             <button
                 class="play-btn"
                 id="playBtn"
@@ -1391,7 +1277,6 @@ body::before {
                 ▶
 
             </button>
-
 
 
             <button
@@ -1409,80 +1294,13 @@ body::before {
     </div>
 
 
-
-    <!-- ================================================= -->
-    <!--              THUYỀN ĐANG BƠI                     -->
-    <!-- ================================================= -->
-
-    <div class="ocean">
-
-
-        <!-- Ánh sáng trên nước -->
-
-        <div class="moon-light"></div>
-
-
-
-        <!-- THUYỀN -->
-
-        <div class="sailing-boat">
-
-
-            <!-- CỜ -->
-
-            <div class="boat-flag"></div>
-
-
-            <!-- BUỒM LỚN -->
-
-            <div class="main-sail"></div>
-
-
-            <!-- BUỒM NHỎ -->
-
-            <div class="small-sail"></div>
-
-
-            <!-- CỘT BUỒM -->
-
-            <div class="boat-mast"></div>
-
-
-            <!-- CABIN -->
-
-            <div class="boat-cabin"></div>
-
-
-            <!-- THÂN THUYỀN -->
-
-            <div class="boat-hull"></div>
-
-
-        </div>
-
-
-
-        <!-- SÓNG -->
-
-        <div class="water-wave wave-a"></div>
-
-        <div class="water-wave wave-b"></div>
-
-        <div class="water-wave wave-c"></div>
-
-        <div class="water-wave wave-d"></div>
-
-
-    </div>
-
-
 </div>
 
 
 
-<!-- ================================================= -->
-<!--                    AUDIO                           -->
-<!-- ================================================= -->
+<!-- =====================================================
+     AUDIO
+===================================================== -->
 
 <audio
     id="audio"
@@ -1493,40 +1311,300 @@ body::before {
 
 <script>
 
+/* =====================================================
+   CANVAS SAO 3D
+===================================================== */
 
-/* ================================================= */
-/*                    AUDIO                           */
-/* ================================================= */
+const canvas =
+    document.getElementById("starfield");
+
+const ctx =
+    canvas.getContext("2d");
+
+
+let width;
+let height;
+
+let centerX;
+let centerY;
+
+let stars = [];
+
+const STAR_COUNT = 650;
+
+let speed = 3;
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+function resizeCanvas() {
+
+    width =
+        canvas.width =
+        window.innerWidth;
+
+    height =
+        canvas.height =
+        window.innerHeight;
+
+    centerX =
+        width / 2;
+
+    centerY =
+        height / 2;
+}
+
+
+/* =====================================================
+   TẠO SAO
+===================================================== */
+
+function createStars() {
+
+    stars = [];
+
+    for (
+        let i = 0;
+        i < STAR_COUNT;
+        i++
+    ) {
+
+        stars.push({
+
+            x:
+                (Math.random() - 0.5)
+                * width
+                * 2,
+
+            y:
+                (Math.random() - 0.5)
+                * height
+                * 2,
+
+            z:
+                Math.random()
+                * width,
+
+            oldX: 0,
+
+            oldY: 0
+
+        });
+
+    }
+}
+
+
+/* =====================================================
+   VẼ SAO
+===================================================== */
+
+function drawStars() {
+
+    ctx.fillStyle =
+        "rgba(0,0,0,0.35)";
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    for (
+        let i = 0;
+        i < stars.length;
+        i++
+    ) {
+
+        const star =
+            stars[i];
+
+
+        const oldX =
+            star.oldX;
+
+        const oldY =
+            star.oldY;
+
+
+        star.z -= speed;
+
+
+        if (star.z <= 1) {
+
+            star.x =
+                (Math.random() - 0.5)
+                * width
+                * 2;
+
+            star.y =
+                (Math.random() - 0.5)
+                * height
+                * 2;
+
+            star.z =
+                width;
+
+        }
+
+
+        const screenX =
+            centerX +
+            (star.x / star.z)
+            * 256;
+
+
+        const screenY =
+            centerY +
+            (star.y / star.z)
+            * 256;
+
+
+        const size =
+            Math.max(
+                0.5,
+                (1 - star.z / width) * 3
+            );
+
+
+        if (
+            oldX > 0 &&
+            oldX < width &&
+            oldY > 0 &&
+            oldY < height
+        ) {
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                oldX,
+                oldY
+            );
+
+            ctx.lineTo(
+                screenX,
+                screenY
+            );
+
+            ctx.strokeStyle =
+                "rgba(150,220,255,.8)";
+
+            ctx.lineWidth =
+                size;
+
+            ctx.stroke();
+
+        }
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            screenX,
+            screenY,
+            size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            "rgba(255,255,255,.95)";
+
+        ctx.fill();
+
+
+        star.oldX =
+            screenX;
+
+        star.oldY =
+            screenY;
+
+    }
+
+
+    requestAnimationFrame(
+        drawStars
+    );
+}
+
+
+/* =====================================================
+   CHUỘT LÀM SAO DI CHUYỂN
+===================================================== */
+
+let mouseX = 0;
+let mouseY = 0;
+
+window.addEventListener(
+    "mousemove",
+    function(event) {
+
+        mouseX =
+            event.clientX;
+
+        mouseY =
+            event.clientY;
+
+    }
+);
+
+
+/* =====================================================
+   KHỞI ĐỘNG SAO
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        resizeCanvas();
+
+        createStars();
+
+    }
+);
+
+
+resizeCanvas();
+
+createStars();
+
+drawStars();
+
+
+
+/* =====================================================
+   AUDIO
+===================================================== */
 
 const audio =
     document.getElementById(
         "audio"
     );
 
-
 const playBtn =
     document.getElementById(
         "playBtn"
     );
-
 
 const volumeBtn =
     document.getElementById(
         "volumeBtn"
     );
 
-
 const progressBar =
     document.getElementById(
         "progressBar"
     );
 
-
 const currentTime =
     document.getElementById(
         "currentTime"
     );
-
 
 const duration =
     document.getElementById(
@@ -1534,37 +1612,32 @@ const duration =
     );
 
 
-
-/* ================================================= */
-/*                PLAY / PAUSE                       */
-/* ================================================= */
+/* =====================================================
+   PLAY / PAUSE
+===================================================== */
 
 function toggleMusic() {
 
-
-    if (audio.paused) {
-
+    if (
+        audio.paused
+    ) {
 
         audio.play();
-
 
         playBtn.innerHTML =
             "Ⅱ";
 
-
         volumeBtn.innerHTML =
             "🔊";
 
+    }
 
-    } else {
-
+    else {
 
         audio.pause();
 
-
         playBtn.innerHTML =
             "▶";
-
 
         volumeBtn.innerHTML =
             "🔇";
@@ -1574,37 +1647,34 @@ function toggleMusic() {
 }
 
 
-
-/* ================================================= */
-/*                LOAD AUDIO                         */
-/* ================================================= */
+/* =====================================================
+   LOAD AUDIO
+===================================================== */
 
 audio.addEventListener(
     "loadedmetadata",
     function() {
-
 
         duration.innerHTML =
             formatTime(
                 audio.duration
             );
 
-
     }
 );
 
 
-
-/* ================================================= */
-/*                CẬP NHẬT NHẠC                     */
-/* ================================================= */
+/* =====================================================
+   TIẾN TRÌNH
+===================================================== */
 
 audio.addEventListener(
     "timeupdate",
     function() {
 
-
-        if (!audio.duration) {
+        if (
+            !audio.duration
+        ) {
 
             return;
 
@@ -1612,6 +1682,7 @@ audio.addEventListener(
 
 
         const percent =
+
             (
                 audio.currentTime /
                 audio.duration
@@ -1627,50 +1698,43 @@ audio.addEventListener(
                 audio.currentTime
             );
 
-
     }
 );
 
 
-
-/* ================================================= */
-/*                KẾT THÚC NHẠC                     */
-/* ================================================= */
+/* =====================================================
+   HẾT NHẠC
+===================================================== */
 
 audio.addEventListener(
     "ended",
     function() {
 
-
         playBtn.innerHTML =
             "▶";
-
 
         volumeBtn.innerHTML =
             "🔊";
 
-
         progressBar.style.width =
             "0%";
 
-
         currentTime.innerHTML =
             "0:00";
-
 
     }
 );
 
 
-
-/* ================================================= */
-/*                TUA NHẠC                           */
-/* ================================================= */
+/* =====================================================
+   TUA NHẠC
+===================================================== */
 
 function seekMusic(event) {
 
-
-    if (!audio.duration) {
+    if (
+        !audio.duration
+    ) {
 
         return;
 
@@ -1682,52 +1746,49 @@ function seekMusic(event) {
         .getBoundingClientRect();
 
 
-    const position =
-        event.clientX -
-        rect.left;
-
-
     const percent =
-        position /
+
+        (
+            event.clientX -
+            rect.left
+        )
+        /
         rect.width;
 
 
     audio.currentTime =
+
         percent *
         audio.duration;
 
 }
 
 
-
-/* ================================================= */
-/*                BÀI TRƯỚC                         */
-/* ================================================= */
+/* =====================================================
+   BÀI TRƯỚC
+===================================================== */
 
 function previousSong() {
 
-    audio.currentTime = 0;
+    audio.currentTime =
+        0;
 
 }
 
 
-
-/* ================================================= */
-/*                BÀI TIẾP                          */
-/* ================================================= */
+/* =====================================================
+   BÀI TIẾP
+===================================================== */
 
 function nextSong() {
 
-
-    audio.currentTime = 0;
-
+    audio.currentTime =
+        0;
 
     audio.play();
 
-
     playBtn.innerHTML =
         "Ⅱ";
-
 
     volumeBtn.innerHTML =
         "🔊";
@@ -1735,15 +1796,17 @@ function nextSong() {
 }
 
 
+/* =====================================================
+   FORMAT TIME
+===================================================== */
 
-/* ================================================= */
-/*                ĐỔI THỜI GIAN                     */
-/* ================================================= */
+function formatTime(
+    seconds
+) {
 
-function formatTime(seconds) {
-
-
-    if (isNaN(seconds)) {
+    if (
+        isNaN(seconds)
+    ) {
 
         return "0:00";
 
@@ -1757,6 +1820,7 @@ function formatTime(seconds) {
 
 
     const secondsLeft =
+
         Math.floor(
             seconds % 60
         )
@@ -1768,21 +1832,21 @@ function formatTime(seconds) {
 
 
     return (
+
         minutes +
         ":" +
         secondsLeft
+
     );
 
 }
 
 
-
-/* ================================================= */
-/*                    LIKE                           */
-/* ================================================= */
+/* =====================================================
+   LIKE
+===================================================== */
 
 function likeProfile() {
-
 
     const likes =
         document.getElementById(
@@ -1791,6 +1855,7 @@ function likeProfile() {
 
 
     likes.innerHTML =
+
         parseInt(
             likes.innerHTML
         ) + 1;
@@ -1798,7 +1863,6 @@ function likeProfile() {
 }
 
 </script>
-
 
 </body>
 </html>
