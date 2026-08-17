@@ -7,34 +7,8 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { width: 100%; min-height: 100%; }
-        body {
-            background: #000;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            overflow-x: hidden;
-            transition: background 1.2s ease;
-        }
-
-        /* ================= TRẠNG THÁI THEO GIỜ ================= */
-        .time-status {
-            position: fixed;
-            top: 18px;
-            right: 22px;
-            z-index: 50;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 3px;
-            padding: 10px 14px;
-            border: 1px solid rgba(255,255,255,.16);
-            border-radius: 14px;
-            background: rgba(8,8,15,.58);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 8px 30px rgba(0,0,0,.25);
-            pointer-events: none;
-            text-align: right;
-        }
+        body { background: #000; color: white; font-family: Arial, Helvetica, sans-serif; overflow-x: hidden; transition: background 1.2s ease; }
+        .time-status { position: fixed; top: 18px; right: 22px; z-index: 50; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; background: rgba(8,8,15,.58); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 8px 30px rgba(0,0,0,.25); pointer-events: none; text-align: right; }
         .time-display { font-size: 18px; font-weight: 700; letter-spacing: 1px; }
         .greeting-display { font-size: 12px; color: rgba(255,255,255,.78); }
         body.morning { background: radial-gradient(circle at 50% 0%, #182544 0%, #080c18 42%, #000 78%); }
@@ -45,16 +19,7 @@
         body.afternoon .time-status { background: rgba(0,140,255,.14); border-color: rgba(0,170,255,.35); }
         body.evening .time-status { background: rgba(92,54,170,.16); border-color: rgba(160,132,255,.34); }
         body.night .time-status { background: rgba(12,20,45,.62); border-color: rgba(130,170,255,.28); }
-
-        #starfield {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: -10;
-            pointer-events: none;
-        }
+        #starfield { position: fixed; inset: 0; width: 100%; height: 100%; background: transparent; z-index: -10; pointer-events: none; }
         .container { position: relative; width: 100%; max-width: 720px; min-height: 100vh; margin: auto; padding: 30px 25px 50px; z-index: 2; }
         .top { display: flex; gap: 12px; margin-bottom: 70px; }
         .top button { width: 60px; height: 60px; border: none; border-radius: 16px; background: rgba(15,15,15,.92); color: white; font-size: 27px; cursor: pointer; transition: .2s; }
@@ -63,29 +28,9 @@
         .avatar { width: 180px; height: 180px; flex-shrink: 0; display: block; object-fit: cover; border-radius: 35px; background: #111; box-shadow: 0 0 12px #008cff, 0 0 30px #008cff, 0 0 60px rgba(0,140,255,.5); }
         .info { flex: 1; }
         .name { font-size: 50px; font-weight: bold; line-height: 1.05; color: #00aaff; margin-bottom: 16px; text-shadow: 0 0 8px #0088ff, 0 0 20px #0088ff, 0 0 35px rgba(0,136,255,.8); }
-
-        /* ================= CHỮ CHẠY DẦN ================= */
-        .bio {
-            color: #999;
-            font-size: 20px;
-            line-height: 1.5;
-            font-style: italic;
-            min-height: 1.5em;
-            white-space: normal;
-            overflow: hidden;
-        }
-        .bio.typing::after {
-            content: "|";
-            display: inline-block;
-            margin-left: 2px;
-            color: #00aaff;
-            animation: blinkCursor .75s steps(1) infinite;
-        }
-        @keyframes blinkCursor {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
+        .bio { color: #999; font-size: 20px; line-height: 1.5; font-style: italic; min-height: 1.5em; white-space: normal; overflow: hidden; }
+        .bio.typing::after { content: "|"; display: inline-block; margin-left: 2px; color: #00aaff; animation: blinkCursor .75s steps(1) infinite; }
+        @keyframes blinkCursor { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
         .stats { display: flex; justify-content: center; align-items: center; gap: 14px; color: #00aaff; font-size: 18px; margin-top: 15px; }
         .separator { color: #777; }
         .boat-section { position: relative; width: 100%; height: 180px; overflow: hidden; margin-top: 5px; }
@@ -113,10 +58,11 @@
         .music-btn { width: 38px; height: 38px; border: none; background: transparent; color: white; font-size: 22px; cursor: pointer; }
         .play-btn { width: 56px; height: 56px; border: none; border-radius: 50%; background: white; color: black; font-size: 21px; cursor: pointer; transition: .2s; }
         .play-btn:hover { transform: scale(1.08); }
-        .heart-btn { transition: transform .2s, color .2s, box-shadow .2s; }
-        .heart-btn:hover { color: #00aaff; box-shadow: 0 0 10px #008cff,0 0 25px rgba(0,140,255,.5); }
-        .heart-btn:active { transform: scale(1.25); }
-
+        .volume-btn { border-radius: 12px; transition: .2s; }
+        .volume-btn:hover { color: #00aaff; background: rgba(0,140,255,.12); box-shadow: 0 0 10px rgba(0,140,255,.35); }
+        .game-btn { transition: transform .2s, color .2s, box-shadow .2s; }
+        .game-btn:hover { color: #00aaff; box-shadow: 0 0 10px #008cff,0 0 25px rgba(0,140,255,.5); }
+        .game-btn:active { transform: scale(1.15); }
         @media (max-width: 600px) {
             .time-status { top: 12px; right: 12px; padding: 8px 11px; }
             .time-display { font-size: 15px; }
@@ -151,15 +97,11 @@
         <div class="time-display" id="timeDisplay">00:00:00</div>
         <div class="greeting-display" id="greetingDisplay">Chào bạn 👋</div>
     </div>
-
     <canvas id="starfield"></canvas>
-
     <div class="container">
         <div class="top">
-            <button id="volumeBtn" onclick="toggleMusic()">🔊</button>
-            <button class="heart-btn" onclick="goToLovePage(this)">♥</button>
+            <button class="game-btn" onclick="goToLovePage(this)" aria-label="Mở game rắn săn mồi">🎮</button>
         </div>
-
         <div class="profile">
             <img class="avatar" src="avatar.jpeg" alt="Mai Văn Thế">
             <div class="info">
@@ -167,11 +109,9 @@
                 <div class="bio typing" id="bioText"></div>
             </div>
         </div>
-
         <div class="stats">
             <b>💙 100K</b><span class="separator">|</span><b>◉ 14/3</b><span class="separator">|</span><b>📍 Hà Nội</b>
         </div>
-
         <div class="boat-section">
             <div class="sailing-boat">
                 <div class="flag"></div><div class="main-sail"></div><div class="small-sail"></div><div class="mast"></div><div class="hull"></div>
@@ -179,164 +119,73 @@
             <div class="water"></div>
             <div class="wave wave1"></div><div class="wave wave2"></div><div class="wave wave3"></div>
         </div>
-
         <div class="song-title">Promise</div>
         <div class="music-controls">
             <span class="time" id="currentTime">0:00</span>
             <div class="progress" onclick="seekMusic(event)"><div class="progress-bar" id="progressBar"></div></div>
             <span class="time" id="duration">0:00</span>
             <div class="buttons">
-                <button class="music-btn" onclick="previousSong()">⏮</button>
-                <button class="play-btn" id="playBtn" onclick="toggleMusic()">▶</button>
-                <button class="music-btn" onclick="nextSong()">⏭</button>
+                <button class="music-btn" onclick="previousSong()" aria-label="Bài trước">⏮</button>
+                <button class="play-btn" id="playBtn" onclick="toggleMusic()" aria-label="Phát hoặc tạm dừng">▶</button>
+                <button class="music-btn" onclick="nextSong()" aria-label="Bài tiếp">⏭</button>
+                <button class="music-btn volume-btn" id="volumeBtn" onclick="toggleMusic()" aria-label="Bật hoặc tắt nhạc">🔊</button>
             </div>
         </div>
     </div>
-
     <audio id="audio" src="Promise.mp3"></audio>
-
     <script>
-        /* ================= TRẠNG THÁI THEO GIỜ ================= */
         const timeDisplay = document.getElementById("timeDisplay");
         const greetingDisplay = document.getElementById("greetingDisplay");
-
         function updateTimeStatus() {
-            const now = new Date();
-            const hour = now.getHours();
+            const now = new Date(); const hour = now.getHours();
             timeDisplay.textContent = now.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
-
             let greeting, periodClass;
             if (hour >= 5 && hour < 12) { greeting = "Chào buổi sáng ☀️"; periodClass = "morning"; }
             else if (hour >= 12 && hour < 18) { greeting = "Chào buổi chiều 🌤️"; periodClass = "afternoon"; }
             else if (hour >= 18 && hour < 22) { greeting = "Chào buổi tối 🌆"; periodClass = "evening"; }
             else { greeting = "Chúc bạn ngủ ngon 🌙"; periodClass = "night"; }
-
             greetingDisplay.textContent = greeting;
-            document.body.classList.remove("morning", "afternoon", "evening", "night");
-            document.body.classList.add(periodClass);
+            document.body.classList.remove("morning", "afternoon", "evening", "night"); document.body.classList.add(periodClass);
         }
-        updateTimeStatus();
-        setInterval(updateTimeStatus, 1000);
+        updateTimeStatus(); setInterval(updateTimeStatus, 1000);
 
-        /* ================= CHỮ CHẠY RA DẦN ================= */
         const bioText = document.getElementById("bioText");
         const bioMessage = "All difficulties will pass, like the way the shower runs through the window!";
         let bioIndex = 0;
-
         function typeBio() {
             bioText.textContent = bioMessage.slice(0, bioIndex);
-            if (bioIndex < bioMessage.length) {
-                bioIndex++;
-                setTimeout(typeBio, bioMessage[bioIndex - 1] === " " ? 120 : 55);
-            } else {
-                setTimeout(() => {
-                    bioIndex = 0;
-                    typeBio();
-                }, 3500);
-            }
+            if (bioIndex < bioMessage.length) { bioIndex++; setTimeout(typeBio, bioMessage[bioIndex - 1] === " " ? 120 : 55); }
+            else { setTimeout(() => { bioIndex = 0; typeBio(); }, 3500); }
         }
         typeBio();
 
-        /* ================= SAO 3D ================= */
-        const canvas = document.getElementById("starfield");
-        const ctx = canvas.getContext("2d");
-        let width, height, centerX, centerY, stars = [];
-        const STAR_COUNT = 600;
-        const STAR_SPEED = 3;
-
-        function resizeCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            centerX = width / 2;
-            centerY = height / 2;
-        }
-        function createStars() {
-            stars = [];
-            for (let i = 0; i < STAR_COUNT; i++) {
-                stars.push({ x: (Math.random() - .5) * width * 2, y: (Math.random() - .5) * height * 2, z: Math.random() * width, oldX: 0, oldY: 0 });
-            }
-        }
+        const canvas = document.getElementById("starfield"); const ctx = canvas.getContext("2d");
+        let width, height, centerX, centerY, stars = []; const STAR_COUNT = 600; const STAR_SPEED = 3;
+        function resizeCanvas() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; centerX = width / 2; centerY = height / 2; }
+        function createStars() { stars = []; for (let i = 0; i < STAR_COUNT; i++) stars.push({ x: (Math.random() - .5) * width * 2, y: (Math.random() - .5) * height * 2, z: Math.random() * width, oldX: 0, oldY: 0 }); }
         function drawStars() {
-            ctx.fillStyle = "rgba(0,0,0,.35)";
-            ctx.fillRect(0,0,width,height);
+            ctx.fillStyle = "rgba(0,0,0,.35)"; ctx.fillRect(0,0,width,height);
             for (let i = 0; i < stars.length; i++) {
-                const star = stars[i];
-                const oldX = star.oldX, oldY = star.oldY;
-                star.z -= STAR_SPEED;
-                if (star.z <= 1) {
-                    star.x = (Math.random() - .5) * width * 2;
-                    star.y = (Math.random() - .5) * height * 2;
-                    star.z = width;
-                }
-                const screenX = centerX + (star.x / star.z) * 256;
-                const screenY = centerY + (star.y / star.z) * 256;
-                const size = Math.max(.5, (1 - star.z / width) * 3);
-                if (oldX > 0 && oldX < width && oldY > 0 && oldY < height) {
-                    ctx.beginPath();
-                    ctx.moveTo(oldX, oldY);
-                    ctx.lineTo(screenX, screenY);
-                    ctx.strokeStyle = "rgba(160,220,255,.75)";
-                    ctx.lineWidth = size;
-                    ctx.stroke();
-                }
-                ctx.beginPath();
-                ctx.arc(screenX, screenY, size, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(255,255,255,.95)";
-                ctx.fill();
-                star.oldX = screenX;
-                star.oldY = screenY;
+                const star = stars[i], oldX = star.oldX, oldY = star.oldY; star.z -= STAR_SPEED;
+                if (star.z <= 1) { star.x = (Math.random() - .5) * width * 2; star.y = (Math.random() - .5) * height * 2; star.z = width; }
+                const screenX = centerX + (star.x / star.z) * 256, screenY = centerY + (star.y / star.z) * 256, size = Math.max(.5, (1 - star.z / width) * 3);
+                if (oldX > 0 && oldX < width && oldY > 0 && oldY < height) { ctx.beginPath(); ctx.moveTo(oldX, oldY); ctx.lineTo(screenX, screenY); ctx.strokeStyle = "rgba(160,220,255,.75)"; ctx.lineWidth = size; ctx.stroke(); }
+                ctx.beginPath(); ctx.arc(screenX, screenY, size, 0, Math.PI * 2); ctx.fillStyle = "rgba(255,255,255,.95)"; ctx.fill(); star.oldX = screenX; star.oldY = screenY;
             }
             requestAnimationFrame(drawStars);
         }
-        window.addEventListener("resize", function() { resizeCanvas(); createStars(); });
-        resizeCanvas();
-        createStars();
-        drawStars();
+        window.addEventListener("resize", function() { resizeCanvas(); createStars(); }); resizeCanvas(); createStars(); drawStars();
 
-        /* ================= NHẠC ================= */
-        const audio = document.getElementById("audio");
-        const playBtn = document.getElementById("playBtn");
-        const volumeBtn = document.getElementById("volumeBtn");
-        const progressBar = document.getElementById("progressBar");
-        const currentTime = document.getElementById("currentTime");
-        const duration = document.getElementById("duration");
-
-        function toggleMusic() {
-            if (audio.paused) {
-                audio.play(); playBtn.innerHTML = "Ⅱ"; volumeBtn.innerHTML = "🔊";
-            } else {
-                audio.pause(); playBtn.innerHTML = "▶"; volumeBtn.innerHTML = "🔇";
-            }
-        }
+        const audio = document.getElementById("audio"); const playBtn = document.getElementById("playBtn"); const volumeBtn = document.getElementById("volumeBtn"); const progressBar = document.getElementById("progressBar"); const currentTime = document.getElementById("currentTime"); const duration = document.getElementById("duration");
+        function toggleMusic() { if (audio.paused) { audio.play(); playBtn.innerHTML = "Ⅱ"; volumeBtn.innerHTML = "🔊"; } else { audio.pause(); playBtn.innerHTML = "▶"; volumeBtn.innerHTML = "🔇"; } }
         audio.addEventListener("loadedmetadata", function() { duration.innerHTML = formatTime(audio.duration); });
-        audio.addEventListener("timeupdate", function() {
-            if (!audio.duration) return;
-            const percent = (audio.currentTime / audio.duration) * 100;
-            progressBar.style.width = percent + "%";
-            currentTime.innerHTML = formatTime(audio.currentTime);
-        });
-        audio.addEventListener("ended", function() {
-            playBtn.innerHTML = "▶"; volumeBtn.innerHTML = "🔊"; progressBar.style.width = "0%"; currentTime.innerHTML = "0:00";
-        });
-        function seekMusic(event) {
-            if (!audio.duration) return;
-            const rect = event.currentTarget.getBoundingClientRect();
-            const percent = (event.clientX - rect.left) / rect.width;
-            audio.currentTime = percent * audio.duration;
-        }
+        audio.addEventListener("timeupdate", function() { if (!audio.duration) return; progressBar.style.width = ((audio.currentTime / audio.duration) * 100) + "%"; currentTime.innerHTML = formatTime(audio.currentTime); });
+        audio.addEventListener("ended", function() { playBtn.innerHTML = "▶"; volumeBtn.innerHTML = "🔊"; progressBar.style.width = "0%"; currentTime.innerHTML = "0:00"; });
+        function seekMusic(event) { if (!audio.duration) return; const rect = event.currentTarget.getBoundingClientRect(); audio.currentTime = ((event.clientX - rect.left) / rect.width) * audio.duration; }
         function previousSong() { audio.currentTime = 0; }
         function nextSong() { audio.currentTime = 0; audio.play(); playBtn.innerHTML = "Ⅱ"; volumeBtn.innerHTML = "🔊"; }
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return "0:00";
-            const minutes = Math.floor(seconds / 60);
-            const secondsLeft = Math.floor(seconds % 60).toString().padStart(2, "0");
-            return minutes + ":" + secondsLeft;
-        }
-        function goToLovePage(button) {
-            button.style.transform = "scale(1.3)";
-            button.style.color = "#00aaff";
-            setTimeout(function() { window.location.href = "love.html"; }, 250);
-        }
+        function formatTime(seconds) { if (isNaN(seconds)) return "0:00"; const minutes = Math.floor(seconds / 60); const secondsLeft = Math.floor(seconds % 60).toString().padStart(2, "0"); return minutes + ":" + secondsLeft; }
+        function goToLovePage(button) { button.style.transform = "scale(1.15)"; button.style.color = "#00aaff"; setTimeout(function() { window.location.href = "love.html"; }, 250); }
     </script>
 </body>
 </html>
