@@ -2,42 +2,84 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cảm ơn bạn đã xem</title>
 
     <style>
-        body {
+        * {
             margin: 0;
-            min-height: 100vh;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #071e3d, #126e82);
             font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2, #ff6b9d);
+            background-size: 300% 300%;
+            animation: bg 8s ease infinite;
         }
 
         .thank-you {
+            padding: 50px 80px;
             text-align: center;
             color: white;
-            padding: 40px;
-        }
-
-        .thank-you img {
-            width: 300px;
-            max-width: 80%;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            animation: floating 3s ease-in-out infinite;
         }
 
         .thank-you h1 {
             font-size: 42px;
-            margin: 10px 0;
-            text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .thank-you p {
             font-size: 20px;
             opacity: 0.9;
+        }
+
+        .heart {
+            font-size: 50px;
+            margin-bottom: 15px;
+            animation: heart 1.2s infinite;
+        }
+
+        @keyframes bg {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes heart {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.25);
+            }
         }
     </style>
 </head>
@@ -45,13 +87,11 @@
 <body>
 
     <div class="thank-you">
+        <div class="heart">💖</div>
 
-        <!-- Đổi "camon.jpg" thành tên ảnh của bạn -->
-        <img src="camon.jpg" alt="Cảm ơn bạn đã xem">
+        <h1>Cảm ơn bạn đã xem!</h1>
 
-        <h1>💙 Cảm ơn bạn đã xem!</h1>
-        <p>Chúc bạn một ngày thật tuyệt vời ✨</p>
-
+        <p>Chúc bạn một ngày thật vui vẻ ✨</p>
     </div>
 
 </body>
