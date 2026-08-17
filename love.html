@@ -1,0 +1,1025 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🌹 Rose</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+
+            overflow: hidden;
+
+            background: #050505;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* ================= NỀN ================= */
+
+        .scene {
+            position: relative;
+
+            width: 100vw;
+            height: 100vh;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 40%,
+                    rgba(255, 130, 160, .08),
+                    transparent 35%
+                ),
+
+                #050505;
+        }
+
+
+        /* ================= ÁNH SÁNG SAU HOA ================= */
+
+        .glow {
+            position: absolute;
+
+            left: 50%;
+            top: 38%;
+
+            width: 300px;
+            height: 300px;
+
+            transform: translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 180, 200, .18),
+                    rgba(255, 80, 130, .05) 45%,
+                    transparent 70%
+                );
+
+            filter: blur(20px);
+
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                opacity: .5;
+                transform:
+                    translate(-50%, -50%)
+                    scale(.9);
+            }
+
+            50% {
+                opacity: 1;
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.15);
+            }
+        }
+
+
+        /* ================= HOA ================= */
+
+        .flower {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            width: 380px;
+            height: 650px;
+
+            transform:
+                translate(-50%, -50%);
+
+            animation:
+                flowerFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes flowerFloat {
+
+            0%,
+            100% {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(-1deg);
+            }
+
+            50% {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(1deg);
+            }
+        }
+
+
+        /* ================= SVG ================= */
+
+        svg {
+            width: 100%;
+            height: 100%;
+
+            overflow: visible;
+        }
+
+
+        /* ================= THÂN ================= */
+
+        .stem {
+            fill: none;
+
+            stroke:
+                url(#stemGradient);
+
+            stroke-width: 7;
+
+            stroke-linecap: round;
+
+            filter:
+                url(#softGlow);
+
+            stroke-dasharray: 1000;
+
+            stroke-dashoffset: 1000;
+
+            animation:
+                drawStem 3s ease forwards;
+        }
+
+        @keyframes drawStem {
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+
+        /* ================= GAI ================= */
+
+        .thorn {
+            fill: #d995a5;
+
+            filter:
+                url(#softGlow);
+
+            opacity: .9;
+        }
+
+
+        /* ================= LÁ ================= */
+
+        .leaf {
+            fill:
+                url(#leafGradient);
+
+            stroke:
+                #ffd3dd;
+
+            stroke-width: 1.5;
+
+            filter:
+                url(#softGlow);
+
+            transform-box: fill-box;
+
+            transform-origin: center;
+
+            animation:
+                leafMove 4s ease-in-out infinite;
+        }
+
+        .leaf:nth-child(2) {
+            animation-delay: .5s;
+        }
+
+        .leaf:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .leaf:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes leafMove {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
+        }
+
+
+        /* ================= CÁNH HOA ================= */
+
+        .petal {
+
+            fill:
+                url(#petalGradient);
+
+            stroke:
+                rgba(255,255,255,.8);
+
+            stroke-width: 1.5;
+
+            filter:
+                url(#petalGlow);
+
+            transform-box: fill-box;
+
+            transform-origin: center;
+
+            opacity: 0;
+
+            animation:
+                bloom 1.8s ease forwards;
+        }
+
+
+        .p1 {
+            animation-delay: .2s;
+        }
+
+        .p2 {
+            animation-delay: .35s;
+        }
+
+        .p3 {
+            animation-delay: .5s;
+        }
+
+        .p4 {
+            animation-delay: .65s;
+        }
+
+        .p5 {
+            animation-delay: .8s;
+        }
+
+        .p6 {
+            animation-delay: .95s;
+        }
+
+        .p7 {
+            animation-delay: 1.1s;
+        }
+
+        .p8 {
+            animation-delay: 1.25s;
+        }
+
+        .p9 {
+            animation-delay: 1.4s;
+        }
+
+        .p10 {
+            animation-delay: 1.55s;
+        }
+
+        @keyframes bloom {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(.2)
+                    rotate(-20deg);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    rotate(0deg);
+            }
+        }
+
+
+        /* ================= NHỤY ================= */
+
+        .center {
+            fill: #ffb5c5;
+
+            filter:
+                url(#petalGlow);
+
+            animation:
+                centerPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes centerPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+
+        /* ================= DÂY UỐN QUANH HOA ================= */
+
+        .vine {
+
+            fill: none;
+
+            stroke:
+                url(#vineGradient);
+
+            stroke-width: 4;
+
+            stroke-linecap: round;
+
+            opacity: .9;
+
+            filter:
+                url(#softGlow);
+
+            stroke-dasharray: 12 7;
+
+            animation:
+                vineLight 3s linear infinite;
+        }
+
+        @keyframes vineLight {
+
+            to {
+                stroke-dashoffset: -100;
+            }
+        }
+
+
+        /* ================= HOA NHỎ TRÊN DÂY ================= */
+
+        .mini-flower {
+
+            fill:
+                #ffd4df;
+
+            filter:
+                url(#petalGlow);
+
+            animation:
+                miniFloat 2.5s ease-in-out infinite;
+        }
+
+        @keyframes miniFloat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+        }
+
+
+        /* ================= HẠT SÁNG ================= */
+
+        .spark {
+
+            position: absolute;
+
+            width: 4px;
+            height: 4px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            box-shadow:
+                0 0 5px white,
+                0 0 12px #ff9fb5,
+                0 0 20px #ff6f91;
+
+            animation:
+                sparkle 2.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translateY(20px)
+                    scale(.3);
+            }
+
+            50% {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1.3);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    translateY(-30px)
+                    scale(.3);
+            }
+        }
+
+
+        /* ================= CHỮ ================= */
+
+        .text {
+
+            position: absolute;
+
+            left: 50%;
+            bottom: 25px;
+
+            transform:
+                translateX(-50%);
+
+            color:
+                rgba(255,210,220,.8);
+
+            font-size: 16px;
+
+            letter-spacing: 3px;
+
+            text-shadow:
+                0 0 8px #ff8fa8;
+
+            opacity: 0;
+
+            animation:
+                textShow 2s ease 3s forwards;
+        }
+
+        @keyframes textShow {
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            .flower {
+
+                width: 320px;
+                height: 580px;
+            }
+
+            .glow {
+
+                width: 240px;
+                height: 240px;
+            }
+
+            .text {
+
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="scene">
+
+
+    <!-- ÁNH SÁNG -->
+
+    <div class="glow"></div>
+
+
+    <!-- ================= HOA ================= -->
+
+    <div class="flower">
+
+        <svg
+            viewBox="0 0 380 650"
+            xmlns="http://www.w3.org/2000/svg">
+
+
+            <defs>
+
+
+                <!-- MÀU CÁNH HOA -->
+
+                <linearGradient
+                    id="petalGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%">
+
+                    <stop
+                        offset="0%"
+                        stop-color="#fffdfd"/>
+
+                    <stop
+                        offset="35%"
+                        stop-color="#ffd9e2"/>
+
+                    <stop
+                        offset="70%"
+                        stop-color="#efa4b5"/>
+
+                    <stop
+                        offset="100%"
+                        stop-color="#c96f87"/>
+
+                </linearGradient>
+
+
+                <!-- MÀU THÂN -->
+
+                <linearGradient
+                    id="stemGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%">
+
+                    <stop
+                        offset="0%"
+                        stop-color="#70505a"/>
+
+                    <stop
+                        offset="35%"
+                        stop-color="#f3b3c1"/>
+
+                    <stop
+                        offset="60%"
+                        stop-color="#ffd4dc"/>
+
+                    <stop
+                        offset="100%"
+                        stop-color="#8f5967"/>
+
+                </linearGradient>
+
+
+                <!-- MÀU LÁ -->
+
+                <linearGradient
+                    id="leafGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%">
+
+                    <stop
+                        offset="0%"
+                        stop-color="#b7e7b5"/>
+
+                    <stop
+                        offset="50%"
+                        stop-color="#648f69"/>
+
+                    <stop
+                        offset="100%"
+                        stop-color="#294d32"/>
+
+                </linearGradient>
+
+
+                <!-- DÂY -->
+
+                <linearGradient
+                    id="vineGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%">
+
+                    <stop
+                        offset="0%"
+                        stop-color="#ffd8df"/>
+
+                    <stop
+                        offset="50%"
+                        stop-color="#c77d8e"/>
+
+                    <stop
+                        offset="100%"
+                        stop-color="#ffd0da"/>
+
+                </linearGradient>
+
+
+                <!-- GLOW THÂN -->
+
+                <filter id="softGlow">
+
+                    <feGaussianBlur
+                        stdDeviation="1.5"
+                        result="blur"/>
+
+                    <feMerge>
+
+                        <feMergeNode
+                            in="blur"/>
+
+                        <feMergeNode
+                            in="SourceGraphic"/>
+
+                    </feMerge>
+
+                </filter>
+
+
+                <!-- GLOW HOA -->
+
+                <filter id="petalGlow">
+
+                    <feGaussianBlur
+                        stdDeviation="2"
+                        result="blur"/>
+
+                    <feMerge>
+
+                        <feMergeNode
+                            in="blur"/>
+
+                        <feMergeNode
+                            in="SourceGraphic"/>
+
+                    </feMerge>
+
+                </filter>
+
+            </defs>
+
+
+            <!-- ================= THÂN ================= -->
+
+            <path
+                class="stem"
+                d="
+                    M190 620
+                    C185 550 190 490 188 430
+                    C185 370 192 310 188 250
+                    C186 205 190 170 190 145
+                "/>
+
+
+            <!-- ================= NHÁNH TRÁI ================= -->
+
+            <path
+                class="stem"
+                stroke-width="4"
+                d="
+                    M188 430
+                    C160 390 135 365 105 345
+                "/>
+
+
+            <!-- ================= NHÁNH PHẢI ================= -->
+
+            <path
+                class="stem"
+                stroke-width="4"
+                d="
+                    M188 360
+                    C220 330 250 310 275 280
+                "/>
+
+
+            <!-- ================= LÁ TRÁI ================= -->
+
+            <path
+                class="leaf"
+                d="
+                    M145 395
+                    C112 365 80 375 62 398
+                    C93 408 122 414 145 395
+                    Z
+                "/>
+
+
+            <!-- ================= LÁ PHẢI ================= -->
+
+            <path
+                class="leaf"
+                d="
+                    M215 350
+                    C245 315 275 320 292 342
+                    C262 350 237 358 215 350
+                    Z
+                "/>
+
+
+            <!-- ================= LÁ NHỎ ================= -->
+
+            <path
+                class="leaf"
+                d="
+                    M170 285
+                    C143 260 118 266 106 286
+                    C130 294 153 297 170 285
+                    Z
+                "/>
+
+
+            <path
+                class="leaf"
+                d="
+                    M210 255
+                    C235 230 257 236 269 253
+                    C245 263 227 268 210 255
+                    Z
+                "/>
+
+
+            <!-- ================= GAI ================= -->
+
+            <path
+                class="thorn"
+                d="M181 450 L158 437 L184 430 Z"/>
+
+            <path
+                class="thorn"
+                d="M190 395 L215 383 L192 375 Z"/>
+
+            <path
+                class="thorn"
+                d="M186 325 L164 313 L190 305 Z"/>
+
+
+            <!-- ================= DÂY QUẤN ================= -->
+
+            <path
+                class="vine"
+                d="
+                    M190 470
+                    C110 520 60 475 78 415
+                    C95 355 165 350 265 395
+                    C320 420 315 330 265 305
+                "/>
+
+
+            <path
+                class="vine"
+                d="
+                    M190 430
+                    C125 455 85 425 90 385
+                    C95 345 130 325 165 320
+                "/>
+
+
+            <!-- ================= CÁNH HOA LỚP NGOÀI ================= -->
+
+            <path
+                class="petal p1"
+                d="
+                    M190 150
+                    C140 150 112 120 125 85
+                    C138 48 178 42 202 65
+                    C218 37 265 53 263 92
+                    C300 82 316 117 290 143
+                    C320 158 300 194 265 190
+                    C250 222 215 215 190 195
+                    C160 220 125 198 132 168
+                    C100 160 105 125 135 115
+                    Z
+                "/>
+
+
+            <!-- ================= CÁNH HOA ================= -->
+
+            <path
+                class="petal p2"
+                d="
+                    M190 165
+                    C150 145 138 105 160 82
+                    C180 62 202 78 208 102
+                    C220 72 250 75 258 99
+                    C265 123 245 145 225 157
+                    C250 160 255 187 230 198
+                    C207 207 192 187 190 165
+                    Z
+                "/>
+
+
+            <path
+                class="petal p3"
+                d="
+                    M190 155
+                    C160 130 163 95 185 84
+                    C206 73 220 96 214 119
+                    C235 98 253 110 252 128
+                    C250 149 225 158 205 162
+                    Z
+                "/>
+
+
+            <path
+                class="petal p4"
+                d="
+                    M185 155
+                    C158 145 151 121 163 106
+                    C176 91 193 103 196 121
+                    C203 101 223 106 228 121
+                    C232 137 215 153 200 160
+                    Z
+                "/>
+
+
+            <path
+                class="petal p5"
+                d="
+                    M200 170
+                    C174 160 169 139 180 126
+                    C192 112 208 123 211 140
+                    C218 121 237 130 238 145
+                    C239 161 221 172 205 176
+                    Z
+                "/>
+
+
+            <!-- ================= CÁNH CUỐI ================= -->
+
+            <path
+                class="petal p6"
+                d="
+                    M170 165
+                    C145 150 135 165 145 181
+                    C155 198 180 190 192 176
+                    Z
+                "/>
+
+
+            <path
+                class="petal p7"
+                d="
+                    M215 165
+                    C245 148 260 165 250 183
+                    C238 201 215 190 202 177
+                    Z
+                "/>
+
+
+            <path
+                class="petal p8"
+                d="
+                    M180 135
+                    C168 112 180 92 198 95
+                    C214 98 218 117 207 134
+                    Z
+                "/>
+
+
+            <!-- ================= NHỤY ================= -->
+
+            <circle
+                class="center"
+                cx="195"
+                cy="150"
+                r="13"/>
+
+
+            <circle
+                class="center"
+                cx="190"
+                cy="145"
+                r="4"
+                fill="#fff"/>
+
+
+            <!-- ================= HOA NHỎ ================= -->
+
+            <g class="mini-flower">
+
+                <circle
+                    cx="82"
+                    cy="400"
+                    r="5"/>
+
+                <circle
+                    cx="75"
+                    cy="393"
+                    r="5"/>
+
+                <circle
+                    cx="89"
+                    cy="393"
+                    r="5"/>
+
+                <circle
+                    cx="82"
+                    cy="386"
+                    r="5"/>
+
+            </g>
+
+
+            <g class="mini-flower">
+
+                <circle
+                    cx="285"
+                    cy="340"
+                    r="5"/>
+
+                <circle
+                    cx="278"
+                    cy="333"
+                    r="5"/>
+
+                <circle
+                    cx="292"
+                    cy="333"
+                    r="5"/>
+
+                <circle
+                    cx="285"
+                    cy="326"
+                    r="5"/>
+
+            </g>
+
+
+        </svg>
+
+    </div>
+
+
+    <!-- ================= HẠT SÁNG ================= -->
+
+    <div class="spark"
+         style="left:35%;top:35%;animation-delay:.2s;">
+    </div>
+
+    <div class="spark"
+         style="left:67%;top:42%;animation-delay:1s;">
+    </div>
+
+    <div class="spark"
+         style="left:30%;top:58%;animation-delay:1.5s;">
+    </div>
+
+    <div class="spark"
+         style="left:72%;top:62%;animation-delay:.7s;">
+    </div>
+
+    <div class="spark"
+         style="left:43%;top:25%;animation-delay:2s;">
+    </div>
+
+    <div class="spark"
+         style="left:58%;top:72%;animation-delay:1.2s;">
+    </div>
+
+
+    <div class="text">
+        FOREVER IN BLOOM 🌹
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
+```
+
+**Điểm mình cố tình làm giống ảnh bạn gửi:** hoa hồng nằm giữa, thân rất mảnh kéo dài xuống dưới, nhiều cánh hồng/trắng chồng lên nhau, lá nhỏ hai bên, dây mảnh uốn thành vòng quanh thân và các điểm sáng phát sáng trên nền đen. Bạn có thể đặt file này làm `love.html` để khi bấm **♥** ở trang trước thì mở thẳng bông hoa này.
