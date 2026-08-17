@@ -1,205 +1,58 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cá Voi Bơi Ngoài Biển Lớn</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <title>Cảm ơn bạn đã xem</title>
 
-    body {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      background: linear-gradient(180deg, #1d2b64 0%, #000511 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-    }
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #071e3d, #126e82);
+            font-family: Arial, sans-serif;
+        }
 
-    .ocean {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-      overflow: hidden;
-    }
+        .thank-you {
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
 
-    /* Các gợn sóng biển */
-    .wave {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 200%;
-      height: 100px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C150,90 350,-40 500,65 C650,170 900,10 1200,40 L1200,120 L0,120 Z" fill="rgba(255, 255, 255, 0.1)"></path></svg>');
-      background-size: 1200px 100px;
-      animation: waveMove 10s linear infinite;
-    }
+        .thank-you img {
+            width: 300px;
+            max-width: 80%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            margin-bottom: 25px;
+        }
 
-    .wave:nth-child(2) {
-      bottom: 10px;
-      opacity: 0.5;
-      animation: waveMove 15s linear infinite reverse;
-    }
+        .thank-you h1 {
+            font-size: 42px;
+            margin: 10px 0;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+        }
 
-    @keyframes waveMove {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* Con cá voi */
-    .whale-container {
-      position: absolute;
-      top: 50%;
-      left: -200px;
-      animation: swim 16s ease-in-out infinite;
-    }
-
-    .whale {
-      position: relative;
-      width: 180px;
-      height: 80px;
-      background: #3a506b;
-      border-radius: 80px 100px 40px 50px;
-    }
-
-    /* Bụng cá voi */
-    .whale::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 20px;
-      width: 120px;
-      height: 35px;
-      background: #e0e1dd;
-      border-radius: 0 0 40px 30px;
-    }
-
-    /* Mắt cá voi */
-    .eye {
-      position: absolute;
-      top: 25px;
-      left: 25px;
-      width: 8px;
-      height: 8px;
-      background: #0b132b;
-      border-radius: 50%;
-      z-index: 2;
-    }
-
-    /* Đuôi cá voi */
-    .tail {
-      position: absolute;
-      right: -30px;
-      top: 20px;
-      width: 40px;
-      height: 40px;
-      background: #3a506b;
-      clip-path: polygon(0 40%, 100% 0, 70% 50%, 100% 100%, 0 60%);
-      animation: tailWag 1.5s ease-in-out infinite alternate;
-      transform-origin: left center;
-    }
-
-    /* Vây bên hông */
-    .fin {
-      position: absolute;
-      bottom: 15px;
-      left: 70px;
-      width: 35px;
-      height: 15px;
-      background: #1c2541;
-      border-radius: 10px 0 20px 0;
-      transform: rotate(-20deg);
-      z-index: 3;
-    }
-
-    /* Vòi phun nước */
-    .spout {
-      position: absolute;
-      top: -30px;
-      left: 60px;
-      width: 6px;
-      height: 30px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 3px;
-      opacity: 0;
-      animation: spoutWater 16s ease-in-out infinite;
-    }
-
-    .spout::before, .spout::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      width: 10px;
-      height: 15px;
-      border-top: 3px solid rgba(255, 255, 255, 0.6);
-      border-radius: 50% 50% 0 0;
-    }
-
-    .spout::before { left: -8px; transform: rotate(-30deg); }
-    .spout::after { right: -8px; transform: rotate(30deg); }
-
-    /* Animation di chuyển của cá voi */
-    @keyframes swim {
-      0% {
-        transform: translate(-200px, 20px) rotate(2deg);
-      }
-      25% {
-        transform: translate(25vw, -30px) rotate(-4deg);
-      }
-      50% {
-        transform: translate(50vw, 10px) rotate(3deg);
-      }
-      75% {
-        transform: translate(75vw, -20px) rotate(-2deg);
-      }
-      100% {
-        transform: translate(calc(100vw + 200px), 0px) rotate(0deg);
-      }
-    }
-
-    /* Animation vẫy đuôi */
-    @keyframes tailWag {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(25deg); }
-    }
-
-    /* Animation phun nước */
-    @keyframes spoutWater {
-      0%, 20%, 30%, 100% {
-        opacity: 0;
-        transform: scaleY(0.2);
-      }
-      22%, 28% {
-        opacity: 1;
-        transform: scaleY(1);
-      }
-    }
-  </style>
+        .thank-you p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+    </style>
 </head>
+
 <body>
 
-  <div class="ocean">
-    <!-- Khung chứa cá voi -->
-    <div class="whale-container">
-      <div class="spout"></div>
-      <div class="whale">
-        <div class="eye"></div>
-        <div class="fin"></div>
-        <div class="tail"></div>
-      </div>
-    </div>
+    <div class="thank-you">
 
-    <!-- Lớp sóng biển -->
-    <div class="wave"></div>
-    <div class="wave"></div>
-  </div>
+        <!-- Đổi "camon.jpg" thành tên ảnh của bạn -->
+        <img src="camon.jpg" alt="Cảm ơn bạn đã xem">
+
+        <h1>💙 Cảm ơn bạn đã xem!</h1>
+        <p>Chúc bạn một ngày thật tuyệt vời ✨</p>
+
+    </div>
 
 </body>
 </html>
