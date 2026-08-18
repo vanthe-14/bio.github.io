@@ -6,128 +6,116 @@
 <title>Rắn săn mồi - Mai Văn Thế</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--accent:#00d5ff;--accent2:#7c3aed;--panel:rgba(5,10,20,.78)}
-body{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:16px;color:#fff;font-family:Arial,sans-serif;overflow-x:hidden;transition:background 1.5s ease}
-body.sunrise{background:radial-gradient(circle at 78% 20%,rgba(255,225,155,.95),transparent 24%),linear-gradient(135deg,#ff9966,#ffcc99,#87ceeb)}
-body.day{background:radial-gradient(circle at 78% 18%,rgba(255,255,220,.95),transparent 22%),linear-gradient(135deg,#4facfe,#00c6ff,#87ceeb)}
-body.sunset{background:radial-gradient(circle at 78% 52%,rgba(255,216,110,.9),transparent 24%),linear-gradient(135deg,#ff512f,#f09819,#7b4397,#182848)}
+:root{--blue:#00d5ff;--panel:rgba(5,10,20,.82)}
+body{min-height:100vh;padding:10px;color:#fff;font-family:Arial,sans-serif;overflow-x:hidden;transition:background 1.5s ease}
+body.sunrise{background:radial-gradient(circle at 80% 15%,rgba(255,225,155,.95),transparent 23%),linear-gradient(135deg,#ff9966,#ffcc99,#87ceeb)}
+body.day{background:radial-gradient(circle at 80% 15%,rgba(255,255,220,.95),transparent 22%),linear-gradient(135deg,#4facfe,#00c6ff,#87ceeb)}
+body.sunset{background:radial-gradient(circle at 80% 50%,rgba(255,216,110,.9),transparent 24%),linear-gradient(135deg,#ff512f,#f09819,#7b4397,#182848)}
 body.night{background:radial-gradient(circle at 50% 10%,rgba(80,120,255,.25),transparent 30%),linear-gradient(135deg,#020024,#090979,#000)}
-.stars{position:fixed;inset:0;pointer-events:none;opacity:0;transition:opacity 1.5s}.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate}.night-only{opacity:0;transition:opacity 1.5s}body.night .night-only,.stars.night-only{opacity:1}
-@keyframes twinkle{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
-.game{position:relative;z-index:2;width:min(96vw,760px);padding:16px;border:1px solid rgba(0,170,255,.25);border-radius:22px;background:var(--panel);backdrop-filter:blur(14px);box-shadow:0 20px 70px rgba(0,0,0,.45),0 0 30px rgba(0,140,255,.12)}
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:7px}.title{font-size:clamp(22px,5vw,32px);font-weight:800;color:#42c7ff;text-shadow:0 0 14px rgba(0,170,255,.6)}.clock{font-size:12px;color:rgba(255,255,255,.72);text-align:right}.status{font-size:13px;color:rgba(255,255,255,.78);margin:0 0 12px}
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:10px}.stat{padding:9px 6px;text-align:center;border-radius:12px;background:rgba(255,255,255,.07);font-size:11px;color:rgba(255,255,255,.75)}.stat b{display:block;font-size:17px;color:#fff;margin-top:2px}
-canvas{display:block;width:100%;aspect-ratio:1;max-width:620px;margin:auto;border-radius:16px;background:#02050a;border:1px solid rgba(0,170,255,.2);touch-action:none}
-.hint{text-align:center;color:rgba(255,255,255,.65);font-size:12px;margin:9px 0}.controls{max-width:220px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.controls button,.actions button,.skin-btn{border:1px solid rgba(0,170,255,.25);background:rgba(0,140,255,.12);color:#fff;border-radius:13px;min-height:48px;font-size:21px;font-weight:700;cursor:pointer;transition:.15s}.controls button:active,.actions button:active,.skin-btn:active{transform:scale(.95)}.up{grid-column:2}.left{grid-column:1}.down{grid-column:2}.right{grid-column:3}
-.actions{display:flex;gap:8px;margin-top:9px}.actions button{flex:1;font-size:14px;min-height:44px}.actions .danger{background:rgba(255,80,100,.13)}
-.section-title{font-size:13px;font-weight:800;margin:14px 0 7px}.skins{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.skin-btn{min-height:42px;font-size:12px}.skin-btn.active{border-color:#fff;box-shadow:0 0 16px rgba(255,255,255,.18);background:rgba(255,255,255,.14)}
-.extra-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.extra-row button{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;border-radius:12px;min-height:42px;font-weight:700;cursor:pointer}
-.board{margin-top:10px;padding:12px;border-radius:14px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08);display:none}.board.show{display:block}.board-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.board-list{display:flex;flex-direction:column;gap:5px}.score-row{display:flex;justify-content:space-between;padding:7px 8px;border-radius:9px;background:rgba(255,255,255,.05);font-size:13px}.empty{color:rgba(255,255,255,.6);font-size:12px}
-.overlay{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.62);padding:20px;z-index:20}.overlay.show{display:grid}.card{width:min(90vw,380px);padding:28px;border-radius:20px;text-align:center;background:#0b1220;border:1px solid rgba(0,170,255,.25);box-shadow:0 20px 60px rgba(0,0,0,.5)}.card h2{font-size:28px;margin-bottom:8px}.card p{color:#aaa;margin-bottom:18px}.restart{width:100%;padding:13px;border:0;border-radius:13px;background:#00aaff;color:#00111a;font-weight:800;font-size:16px;cursor:pointer}
-.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;z-index:30;padding:10px 14px;border-radius:12px;background:rgba(5,10,20,.9);border:1px solid rgba(255,255,255,.15);transition:.25s;font-size:13px}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(max-width:650px){body{padding:9px}.game{padding:11px}.stats{grid-template-columns:repeat(3,1fr)}.skins{grid-template-columns:repeat(3,1fr)}.top{align-items:flex-start}.clock{font-size:11px}.hint{font-size:11px}}
+.stars{position:fixed;inset:0;pointer-events:none;opacity:0;transition:opacity 1.5s}.night .stars{opacity:1}.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate}@keyframes twinkle{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
+.game{position:relative;z-index:2;width:min(98vw,1000px);margin:auto;padding:14px;border:1px solid rgba(0,170,255,.25);border-radius:22px;background:var(--panel);backdrop-filter:blur(14px);box-shadow:0 20px 70px rgba(0,0,0,.45)}
+.header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}.title{font-size:clamp(22px,4vw,31px);font-weight:800;color:#42c7ff;text-shadow:0 0 14px rgba(0,170,255,.6)}.clock{text-align:right;font-size:12px;color:rgba(255,255,255,.75)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:14px;align-items:start}.play{min-width:0}.side{display:flex;flex-direction:column;gap:9px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}.stat{padding:8px 4px;text-align:center;border-radius:11px;background:rgba(255,255,255,.07);font-size:10px;color:rgba(255,255,255,.72)}.stat b{display:block;font-size:17px;color:#fff;margin-top:2px}
+canvas{display:block;width:100%;max-width:590px;aspect-ratio:1;margin:auto;border-radius:15px;background:#02050a;border:1px solid rgba(0,170,255,.2);touch-action:none}.hint{text-align:center;color:rgba(255,255,255,.6);font-size:11px;margin-top:7px}
+.box{padding:10px;border-radius:14px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}.box-title{font-size:12px;font-weight:800;margin-bottom:7px}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}.buttons button,.skin,.dir button{border:1px solid rgba(0,170,255,.25);background:rgba(0,140,255,.11);color:#fff;border-radius:11px;min-height:39px;font-weight:700;cursor:pointer}.buttons button:active,.skin:active,.dir button:active{transform:scale(.95)}
+.dir{max-width:190px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.dir button{min-height:43px;font-size:18px}.up{grid-column:2}.left{grid-column:1}.down{grid-column:2}.right{grid-column:3}
+.skins{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.skin{font-size:11px;min-height:37px}.skin.active{border-color:#fff;background:rgba(255,255,255,.16);box-shadow:0 0 12px rgba(255,255,255,.12)}
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:6px}.mode button{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;border-radius:10px;min-height:38px;font-size:11px;font-weight:700;cursor:pointer}
+.board{display:none;margin-top:6px}.board.show{display:block}.scores{display:flex;flex-direction:column;gap:4px}.score-row{display:flex;justify-content:space-between;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,.05);font-size:11px}.clear{margin-left:auto;border:0;background:transparent;color:#ff8d9e;cursor:pointer;font-size:10px}
+.overlay{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.62);padding:20px;z-index:20}.overlay.show{display:grid}.card{width:min(90vw,360px);padding:26px;border-radius:20px;text-align:center;background:#0b1220;border:1px solid rgba(0,170,255,.25)}.card h2{font-size:27px;margin-bottom:8px}.card p{color:#aaa;margin-bottom:16px}.restart{width:100%;padding:12px;border:0;border-radius:12px;background:#00aaff;color:#00111a;font-weight:800;font-size:15px;cursor:pointer}.toast{position:fixed;left:50%;bottom:15px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;z-index:30;padding:9px 13px;border-radius:11px;background:rgba(5,10,20,.94);border:1px solid rgba(255,255,255,.15);transition:.25s;font-size:12px}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.side .full{grid-column:1/-1}.game{padding:10px}.stats{grid-template-columns:repeat(5,1fr)}.stat{font-size:9px}.stat b{font-size:15px}}
+@media(max-width:480px){body{padding:6px}.header{align-items:flex-start}.clock{font-size:10px}.layout{gap:8px}.side{display:block}.side .box{margin-top:7px}.stats{gap:3px}.stat{padding:6px 2px}.stat b{font-size:14px}.hint{font-size:10px}.buttons button{min-height:37px}.skins{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
-<div class="stars night-only" id="stars"></div>
+<div class="stars" id="stars"></div>
 <div class="game">
-  <div class="top">
-    <div class="title">🐍 Rắn săn mồi</div>
+  <div class="header">
+    <div class="title">🐍 RẮN SĂN MỒI</div>
     <div class="clock"><div id="clock">00:00:00</div><div id="timeStatus">🌙 Vũ trụ</div></div>
   </div>
-  <div class="status">🎮 Ăn 🍎 để tăng điểm • Ăn 🪙 để nhặt xu • Điểm càng cao, rắn càng nhanh</div>
 
-  <div class="stats">
-    <div class="stat">🏆 Điểm<b id="score">0</b></div>
-    <div class="stat">🥇 Cao nhất<b id="highScore">0</b></div>
-    <div class="stat">❤️ Mạng<b id="lives">3</b></div>
-    <div class="stat">🪙 Xu<b id="coins">0</b></div>
-    <div class="stat">⚡ Tốc độ<b id="speed">1x</b></div>
-  </div>
+  <div class="layout">
+    <div class="play">
+      <div class="stats">
+        <div class="stat">🏆 Điểm<b id="score">0</b></div>
+        <div class="stat">🥇 Cao nhất<b id="high">0</b></div>
+        <div class="stat">❤️ Mạng<b id="lives">3</b></div>
+        <div class="stat">🪙 Xu<b id="coins">0</b></div>
+        <div class="stat">⚡ Tốc độ<b id="speed">1.0x</b></div>
+      </div>
+      <canvas id="game" width="620" height="620"></canvas>
+      <div class="hint">⌨️ WASD / Mũi tên • Space = Pause • 📱 Chạm nút hoặc vuốt trên màn hình</div>
+    </div>
 
-  <canvas id="game" width="620" height="620"></canvas>
-  <div class="hint">← ↑ ↓ → hoặc WASD • Space = Pause • Trên điện thoại: chạm nút hoặc vuốt trên màn hình</div>
+    <div class="side">
+      <div class="box">
+        <div class="box-title">🎮 ĐIỀU KHIỂN</div>
+        <div class="buttons">
+          <button id="pause">⏸ Pause</button><button id="newGame">🔄 Chơi mới</button>
+          <button id="back">← Trang chính</button><button id="boardBtn">🥇 Thành tích</button>
+        </div>
+      </div>
 
-  <div class="controls">
-    <button class="up" data-dir="up">▲</button>
-    <button class="left" data-dir="left">◀</button>
-    <button class="down" data-dir="down">▼</button>
-    <button class="right" data-dir="right">▶</button>
-  </div>
+      <div class="box">
+        <div class="box-title">🕹️ DI CHUYỂN MOBILE</div>
+        <div class="dir">
+          <button class="up" data-dir="up">▲</button><button class="left" data-dir="left">◀</button><button class="down" data-dir="down">▼</button><button class="right" data-dir="right">▶</button>
+        </div>
+      </div>
 
-  <div class="actions">
-    <button id="pause">⏸ Tạm dừng</button>
-    <button id="newGame">🎮 Chơi mới</button>
-    <button id="back" class="danger">← Trang chính</button>
-  </div>
+      <div class="box">
+        <div class="box-title">🌈 SKIN RẮN</div>
+        <div class="skins">
+          <button class="skin active" data-skin="green">🐍 Xanh</button><button class="skin" data-skin="red">🔥 Đỏ</button><button class="skin" data-skin="blue">💎 Biển</button>
+          <button class="skin" data-skin="purple">🔮 Tím</button><button class="skin" data-skin="gold">👑 Vàng</button><button class="skin" data-skin="rainbow">🌈 Cầu vồng</button>
+        </div>
+      </div>
 
-  <div class="section-title">🌈 Skin cho rắn</div>
-  <div class="skins">
-    <button class="skin-btn active" data-skin="green">🐍 Xanh</button>
-    <button class="skin-btn" data-skin="red">🔥 Đỏ</button>
-    <button class="skin-btn" data-skin="blue">💎 Biển</button>
-    <button class="skin-btn" data-skin="purple">🔮 Tím</button>
-    <button class="skin-btn" data-skin="gold">👑 Vàng</button>
-    <button class="skin-btn" data-skin="rainbow">🌈 Cầu vồng</button>
-  </div>
+      <div class="box full">
+        <div class="box-title">🌙 CHẾ ĐỘ NỀN</div>
+        <div class="mode"><button id="autoMode">🌅 Theo thời gian</button><button id="nightMode">🌙 Ban đêm</button></div>
+      </div>
 
-  <div class="extra-row">
-    <button id="nightMode">🌙 Chế độ ban đêm: TỰ ĐỘNG</button>
-    <button id="leaderboardBtn">🥇 Bảng thành tích</button>
-  </div>
-
-  <div class="board" id="board">
-    <div class="board-head"><b>🥇 TOP 10</b><button id="clearScores" style="border:0;background:transparent;color:#ff8d9e;cursor:pointer">Xóa</button></div>
-    <div class="board-list" id="boardList"></div>
+      <div class="box full board" id="board">
+        <div class="box-title" style="display:flex;align-items:center">🥇 TOP 10 <button class="clear" id="clear">Xóa bảng</button></div>
+        <div class="scores" id="scores"></div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="overlay" id="over"><div class="card"><h2 id="overTitle">💀 Game Over!</h2><p>Điểm: <b id="final">0</b> • Xu: <b id="finalCoins">0</b></p><button class="restart" id="restart">Chơi lại</button></div></div>
+<div class="overlay" id="over"><div class="card"><h2>💀 GAME OVER</h2><p>🏆 Điểm: <b id="final">0</b> • 🪙 Xu: <b id="finalCoins">0</b></p><button class="restart" id="restart">🎮 Chơi lại</button></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
-const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
-const N=31,C=20;
-let snake,food,coin,dir,nextDir,score,lives,coins,paused,ended,timer,skin='green';
-let manualNight=false;
-const scoreEl=document.getElementById('score'),highScoreEl=document.getElementById('highScore'),livesEl=document.getElementById('lives'),coinsEl=document.getElementById('coins'),speedEl=document.getElementById('speed');
-const pauseBtn=document.getElementById('pause'),over=document.getElementById('over'),finalEl=document.getElementById('final'),finalCoinsEl=document.getElementById('finalCoins'),toast=document.getElementById('toast');
-const highScore=()=>Number(localStorage.getItem('snakeHighScore')||0);
-function showToast(text){toast.textContent=text;toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),1500)}
-function updateClock(){const now=new Date(),h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();document.getElementById('clock').textContent=[h,m,s].map(v=>String(v).padStart(2,'0')).join(':');let cls,label;if(manualNight){cls='night';label='🌙 Ban đêm thủ công'}else if(h>=5&&h<11){cls='sunrise';label='🌅 Bình minh'}else if(h>=11&&h<17){cls='day';label='☀️ Ban ngày'}else if(h>=17&&h<19){cls='sunset';label='🌇 Hoàng hôn'}else{cls='night';label='🌙 Vũ trụ'}document.body.className=cls;document.getElementById('timeStatus').textContent=label}
-function makeStars(){const s=document.getElementById('stars');for(let i=0;i<140;i++){const e=document.createElement('span');e.className='star';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';e.style.animationDelay=Math.random()*2+'s';s.appendChild(e)}}
-function reset(){clearInterval(timer);snake=[{x:15,y:15},{x:14,y:15},{x:13,y:15}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;lives=3;coins=0;paused=false;ended=false;scoreEl.textContent='0';livesEl.textContent='3';coinsEl.textContent='0';highScoreEl.textContent=highScore();pauseBtn.textContent='⏸ Tạm dừng';over.classList.remove('show');placeFood();placeCoin();updateSpeed();draw();startLoop()}
-function getDelay(){return Math.max(55,155-score*2.7)}
-function updateSpeed(){speedEl.textContent=(155/getDelay()).toFixed(1)+'x'}
-function startLoop(){clearInterval(timer);timer=setInterval(step,getDelay())}
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d'),N=31,C=20;
+let snake,food,coin,dir,nextDir,score,lives,coins,paused,ended,timer,skin='green',manualNight=false;
+const $=id=>document.getElementById(id), high=()=>Number(localStorage.getItem('snakeHighScore')||0);
+function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>$('toast').classList.remove('show'),1300)}
+function clock(){let n=new Date(),h=n.getHours(),m=n.getMinutes(),s=n.getSeconds();$('clock').textContent=[h,m,s].map(x=>String(x).padStart(2,'0')).join(':');let c,l;if(manualNight){c='night';l='🌙 Ban đêm'}else if(h>=5&&h<11){c='sunrise';l='🌅 Bình minh'}else if(h>=11&&h<17){c='day';l='☀️ Ban ngày'}else if(h>=17&&h<19){c='sunset';l='🌇 Hoàng hôn'}else{c='night';l='🌙 Vũ trụ'}document.body.className=c;$('timeStatus').textContent=l}
+function stars(){for(let i=0;i<130;i++){let e=document.createElement('span');e.className='star';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';e.style.animationDelay=Math.random()*2+'s';$('stars').appendChild(e)}}
+function reset(){clearInterval(timer);snake=[{x:15,y:15},{x:14,y:15},{x:13,y:15}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;lives=3;coins=0;paused=false;ended=false;$('score').textContent=0;$('lives').textContent=3;$('coins').textContent=0;$('high').textContent=high();$('pause').textContent='⏸ Pause';$('over').classList.remove('show');placeFood();placeCoin();loop();draw()}
+function delay(){return Math.max(55,155-score*2.7)}
+function loop(){clearInterval(timer);timer=setInterval(step,delay());$('speed').textContent=(155/delay()).toFixed(1)+'x'}
 function rand(){return{x:Math.floor(Math.random()*N),y:Math.floor(Math.random()*N)}}
 function same(a,b){return a.x===b.x&&a.y===b.y}
-function occupied(p){return snake.some(s=>same(s,p))}
-function placeFood(){do{food=rand()}while(occupied(food))}
-function placeCoin(){do{coin=rand()}while(occupied(coin)||same(food,coin))}
-function setDir(name){const map={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}};const d=map[name];if(!d|| (d.x===-dir.x&&d.y===-dir.y))return;nextDir=d}
-function step(){if(paused||ended)return;dir=nextDir;const h={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(h.x<0||h.x>=N||h.y<0||h.y>=N||snake.some((s,i)=>i>0&&same(s,h))){loseLife();return}snake.unshift(h);let ate=false;if(same(h,food)){score+=10;ate=true;placeFood();updateSpeed();startLoop();saveBest()}if(same(h,coin)){coins+=1;coinsEl.textContent=coins;placeCoin();showToast('🪙 +1 xu')}if(!ate)snake.pop();draw()}
-function loseLife(){lives--;livesEl.textContent=lives;if(lives<=0){end();return}showToast('❤️ Mất 1 mạng');snake=[{x:15,y:15},{x:14,y:15},{x:13,y:15}];dir={x:1,y:0};nextDir={x:1,y:0};placeFood();placeCoin();draw()}
-function saveBest(){const best=highScore();if(score>best){localStorage.setItem('snakeHighScore',score);highScoreEl.textContent=score}}
-function getScores(){return JSON.parse(localStorage.getItem('snakeScores')||'[]')}
-function saveScore(){const scores=getScores();scores.push({score,coins,date:new Date().toLocaleString('vi-VN')});scores.sort((a,b)=>b.score-a.score);localStorage.setItem('snakeScores',JSON.stringify(scores.slice(0,10)))}
-function end(){ended=true;clearInterval(timer);saveBest();saveScore();finalEl.textContent=score;finalCoinsEl.textContent=coins;document.getElementById('overTitle').textContent='💀 Game Over!';over.classList.add('show');renderBoard()}
-function togglePause(){if(ended)return;paused=!paused;pauseBtn.textContent=paused?'▶ Tiếp tục':'⏸ Tạm dừng';showToast(paused?'⏸ Đã tạm dừng':'▶ Tiếp tục')}
-function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#02050a';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.strokeStyle='rgba(80,170,255,.055)';for(let i=1;i<N;i++){const p=i*C;ctx.beginPath();ctx.moveTo(p,0);ctx.lineTo(p,canvas.height);ctx.stroke();ctx.beginPath();ctx.moveTo(0,p);ctx.lineTo(canvas.width,p);ctx.stroke()}
-ctx.font='20px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('🍎',food.x*C+10,food.y*C+10);ctx.font='19px Arial';ctx.fillText('🪙',coin.x*C+10,coin.y*C+10);ctx.textAlign='start';ctx.textBaseline='alphabetic';
-snake.forEach((s,i)=>{if(skin==='green')ctx.fillStyle=i===0?'#7CFC00':'#16a34a';else if(skin==='red')ctx.fillStyle=i===0?'#ff5959':'#d62828';else if(skin==='blue')ctx.fillStyle=i===0?'#67e8f9':'#0284c7';else if(skin==='purple')ctx.fillStyle=i===0?'#f0abfc':'#9333ea';else if(skin==='gold')ctx.fillStyle=i===0?'#fff000':'#d4a017';else ctx.fillStyle=`hsl(${(i*30+score*3)%360},100%,60%)`;ctx.shadowBlur=i===0?12:4;ctx.shadowColor=ctx.fillStyle;roundRect(s.x*C+2,s.y*C+2,16,16,5);ctx.fill();if(i===0){ctx.shadowBlur=0;ctx.fillStyle='#071018';ctx.beginPath();ctx.arc(s.x*C+7,s.y*C+7,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(s.x*C+13,s.y*C+7,2,0,Math.PI*2);ctx.fill()}});ctx.shadowBlur=0}
-function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
-function setSkin(name){skin=name;document.querySelectorAll('.skin-btn').forEach(b=>b.classList.toggle('active',b.dataset.skin===name));draw();localStorage.setItem('snakeSkin',name)}
-function renderBoard(){const list=document.getElementById('boardList'),scores=getScores();if(!scores.length){list.innerHTML='<div class="empty">Chưa có thành tích nào.</div>';return}list.innerHTML=scores.map((s,i)=>`<div class="score-row"><span>${i+1}. 🐍 ${s.date}</span><b>${s.score}đ • 🪙 ${s.coins}</b></div>`).join('')}
-function toggleBoard(){const b=document.getElementById('board');b.classList.toggle('show');if(b.classList.contains('show'))renderBoard()}
-
-document.querySelectorAll('[data-dir]').forEach(b=>b.addEventListener('click',()=>setDir(b.dataset.dir)));
-document.querySelectorAll('[data-skin]').forEach(b=>b.addEventListener('click',()=>setSkin(b.dataset.skin)));
-pauseBtn.addEventListener('click',togglePause);document.getElementById('newGame').addEventListener('click',reset);document.getElementById('restart').addEventListener('click',reset);document.getElementById('back').addEventListener('click',()=>location.href='index.html');document.getElementById('leaderboardBtn').addEventListener('click',toggleBoard);document.getElementById('clearScores').addEventListener('click',()=>{localStorage.removeItem('snakeScores');renderBoard();showToast('Đã xóa bảng thành tích')});
-document.getElementById('nightMode').addEventListener('click',e=>{manualNight=!manualNight;e.target.textContent='🌙 Chế độ ban đêm: '+(manualNight?'BẬT':'TỰ ĐỘNG');updateClock()});
-document.addEventListener('keydown',e=>{const map={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right'};if(map[e.key]){e.preventDefault();setDir(map[e.key])}else if(e.key===' '){e.preventDefault();togglePause()}});
-let touchStart=null;canvas.addEventListener('touchstart',e=>{const t=e.changedTouches[0];touchStart={x:t.clientX,y:t.clientY}},{passive:true});canvas.addEventListener('touchend',e=>{if(!touchStart)return;const t=e.changedTouches[0],dx=t.clientX-touchStart.x,dy=t.clientY-touchStart.y;if(Math.max(Math.abs(dx),Math.abs(dy))>=25){if(Math.abs(dx)>Math.abs(dy))setDir(dx>0?'right':'left');else setDir(dy>0?'down':'up')}touchStart=null},{passive:true});
-const savedSkin=localStorage.getItem('snakeSkin');if(savedSkin)setSkin(savedSkin);makeStars();highScoreEl.textContent=highScore();updateClock();setInterval(updateClock,1000);reset();
+function occ(p){return snake.some(s=>same(s,p))}
+function placeFood(){do{food=rand()}while(occ(food))}
+function placeCoin(){do{coin=rand()}while(occ(coin)||same(food,coin))}
+function setDir(n){let d={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}}[n];if(d&&!(d.x===-dir.x&&d.y===-dir.y))nextDir=d}
+function step(){if(paused||ended)return;dir=nextDir;let h={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(h.x<0||h.x>=N||h.y<0||h.y>=N||snake.some((s,i)=>i>0&&same(s,h))){lifeLost();return}snake.unshift(h);let grow=false;if(same(h,food)){score+=10;grow=true;placeFood();if(score>high()){localStorage.setItem('snakeHighScore',score)}$('score').textContent=score;$('high').textContent=high();loop()}if(same(h,coin)){coins++;$('coins').textContent=coins;placeCoin();toast('🪙 +1 xu')}if(!grow)snake.pop();draw()}
+function lifeLost(){lives--;$('lives').textContent=lives;if(lives<=0){end();return}toast('❤️ Mất 1 mạng');snake=[{x:15,y:15},{x:14,y:15},{x:13,y:15}];dir={x:1,y:0};nextDir={x:1,y:0};placeFood();placeCoin();draw()}
+function end(){ended=true;clearInterval(timer);saveScore();$('final').textContent=score;$('finalCoins').textContent=coins;$('high').textContent=high();$('over').classList.add('show');renderScores()}
+function saveScore(){let a=JSON.parse(localStorage.getItem('snakeScores')||'[]');a.push({score,coins});a.sort((x,y)=>y.score-x.score);localStorage.setItem('snakeScores',JSON.stringify(a.slice(0,10)))}
+function renderScores(){let a=JSON.parse(localStorage.getItem('snakeScores')||'[]');$('scores').innerHTML=a.length?a.map((x,i)=>`<div class="score-row"><span>${i+1}. 🐍 ${x.score} điểm</span><b>🪙 ${x.coins}</b></div>`).join(''):'<div style="font-size:11px;color:#aaa">Chưa có thành tích.</div>'}
+function togglePause(){if(ended)return;paused=!paused;$('pause').textContent=paused?'▶ Resume':'⏸ Pause';toast(paused?'⏸ Đã tạm dừng':'▶ Tiếp tục')}
+function draw(){ctx.clearRect(0,0,620,620);ctx.fillStyle='#02050a';ctx.fillRect(0,0,620,620);ctx.strokeStyle='rgba(80,170,255,.05)';for(let i=1;i<N;i++){let p=i*C;ctx.beginPath();ctx.moveTo(p,0);ctx.lineTo(p,620);ctx.stroke();ctx.beginPath();ctx.moveTo(0,p);ctx.lineTo(620,p);ctx.stroke()}ctx.font='18px Arial';ctx.fillText('🍎',food.x*C+1,food.y*C+19);ctx.fillText('🪙',coin.x*C+1,coin.y*C+19);snake.forEach((s,i)=>{let color=i===0?'#00eaff':skin==='red'?'#ff3b5c':skin==='blue'?'#3b82f6':skin==='purple'?'#c084fc':skin==='gold'?'#ffd700':skin==='rainbow'?`hsl(${(i*35+score*4)%360},100%,60%)`:'#20e060';ctx.fillStyle=color;ctx.shadowBlur=i===0?12:4;ctx.shadowColor=color;round(s.x*C+2,s.y*C+2,16,16,5);ctx.fill()});ctx.shadowBlur=0}
+function round(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+document.querySelectorAll('[data-dir]').forEach(b=>b.onclick=()=>setDir(b.dataset.dir));document.addEventListener('keydown',e=>{let m={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right'};if(m[e.key]){e.preventDefault();setDir(m[e.key])}if(e.key===' '){e.preventDefault();togglePause()}});
+let touch=null;canvas.addEventListener('touchstart',e=>{let t=e.changedTouches[0];touch={x:t.clientX,y:t.clientY}},{passive:true});canvas.addEventListener('touchend',e=>{if(!touch)return;let t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;if(Math.max(Math.abs(dx),Math.abs(dy))>25)setDir(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'));touch=null},{passive:true});
+$('pause').onclick=togglePause;$('newGame').onclick=reset;$('restart').onclick=reset;$('back').onclick=()=>location.href='index.html';$('boardBtn').onclick=()=>{$('board').classList.toggle('show');renderScores()};$('clear').onclick=()=>{localStorage.removeItem('snakeScores');renderScores()};$('nightMode').onclick=()=>{manualNight=true;clock()};$('autoMode').onclick=()=>{manualNight=false;clock()};document.querySelectorAll('.skin').forEach(b=>b.onclick=()=>{skin=b.dataset.skin;document.querySelectorAll('.skin').forEach(x=>x.classList.remove('active'));b.classList.add('active');draw();localStorage.setItem('snakeSkin',skin)});skin=localStorage.getItem('snakeSkin')||'green';document.querySelectorAll('.skin').forEach(b=>b.classList.toggle('active',b.dataset.skin===skin));stars();clock();setInterval(clock,1000);reset();
 </script>
 </body>
 </html>
