@@ -18,8 +18,7 @@ body.night{background:radial-gradient(circle at 50% 10%,rgba(80,120,255,.25),tra
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:14px;align-items:start}.play{min-width:0}.side{display:flex;flex-direction:column;gap:9px}
 .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}.stat{padding:8px 4px;text-align:center;border-radius:11px;background:rgba(255,255,255,.07);font-size:10px;color:rgba(255,255,255,.72)}.stat b{display:block;font-size:17px;color:#fff;margin-top:2px}
 canvas{display:block;width:100%;max-width:590px;aspect-ratio:1;margin:auto;border-radius:15px;background:#02050a;border:1px solid rgba(0,170,255,.2);touch-action:none}.hint{text-align:center;color:rgba(255,255,255,.6);font-size:11px;margin-top:7px}
-.box{padding:10px;border-radius:14px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}.box-title{font-size:12px;font-weight:800;margin-bottom:7px}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}.buttons button,.skin,.dir button{border:1px solid rgba(0,170,255,.25);background:rgba(0,140,255,.11);color:#fff;border-radius:11px;min-height:39px;font-weight:700;cursor:pointer}.buttons button:active,.skin:active,.dir button:active{transform:scale(.95)}
-.dir{max-width:190px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.dir button{min-height:43px;font-size:18px}.up{grid-column:2}.left{grid-column:1}.down{grid-column:2}.right{grid-column:3}
+.box{padding:10px;border-radius:14px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}.box-title{font-size:12px;font-weight:800;margin-bottom:7px}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}.buttons button,.skin{border:1px solid rgba(0,170,255,.25);background:rgba(0,140,255,.11);color:#fff;border-radius:11px;min-height:39px;font-weight:700;cursor:pointer}.buttons button:active,.skin:active{transform:scale(.95)}
 .skins{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.skin{font-size:11px;min-height:37px}.skin.active{border-color:#fff;background:rgba(255,255,255,.16);box-shadow:0 0 12px rgba(255,255,255,.12)}
 .mode{display:grid;grid-template-columns:1fr 1fr;gap:6px}.mode button{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;border-radius:10px;min-height:38px;font-size:11px;font-weight:700;cursor:pointer}
 .board{display:none;margin-top:6px}.board.show{display:block}.scores{display:flex;flex-direction:column;gap:4px}.score-row{display:flex;justify-content:space-between;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,.05);font-size:11px}.clear{margin-left:auto;border:0;background:transparent;color:#ff8d9e;cursor:pointer;font-size:10px}
@@ -46,7 +45,7 @@ canvas{display:block;width:100%;max-width:590px;aspect-ratio:1;margin:auto;borde
         <div class="stat">⚡ Tốc độ<b id="speed">1.0x</b></div>
       </div>
       <canvas id="game" width="620" height="620"></canvas>
-      <div class="hint">⌨️ WASD / Mũi tên • Space = Pause • 📱 Chạm nút hoặc vuốt trên màn hình</div>
+      <div class="hint">⌨️ WASD / Mũi tên • Space = Pause • 📱 Vuốt trên màn hình để di chuyển</div>
     </div>
 
     <div class="side">
@@ -55,13 +54,6 @@ canvas{display:block;width:100%;max-width:590px;aspect-ratio:1;margin:auto;borde
         <div class="buttons">
           <button id="pause">⏸ Pause</button><button id="newGame">🔄 Chơi mới</button>
           <button id="back">← Trang chính</button><button id="boardBtn">🥇 Thành tích</button>
-        </div>
-      </div>
-
-      <div class="box">
-        <div class="box-title">🕹️ DI CHUYỂN MOBILE</div>
-        <div class="dir">
-          <button class="up" data-dir="up">▲</button><button class="left" data-dir="left">◀</button><button class="down" data-dir="down">▼</button><button class="right" data-dir="right">▶</button>
         </div>
       </div>
 
@@ -113,7 +105,7 @@ function renderScores(){let a=JSON.parse(localStorage.getItem('snakeScores')||'[
 function togglePause(){if(ended)return;paused=!paused;$('pause').textContent=paused?'▶ Resume':'⏸ Pause';toast(paused?'⏸ Đã tạm dừng':'▶ Tiếp tục')}
 function draw(){ctx.clearRect(0,0,620,620);ctx.fillStyle='#02050a';ctx.fillRect(0,0,620,620);ctx.strokeStyle='rgba(80,170,255,.05)';for(let i=1;i<N;i++){let p=i*C;ctx.beginPath();ctx.moveTo(p,0);ctx.lineTo(p,620);ctx.stroke();ctx.beginPath();ctx.moveTo(0,p);ctx.lineTo(620,p);ctx.stroke()}ctx.font='18px Arial';ctx.fillText('🍎',food.x*C+1,food.y*C+19);ctx.fillText('🪙',coin.x*C+1,coin.y*C+19);snake.forEach((s,i)=>{let color=i===0?'#00eaff':skin==='red'?'#ff3b5c':skin==='blue'?'#3b82f6':skin==='purple'?'#c084fc':skin==='gold'?'#ffd700':skin==='rainbow'?`hsl(${(i*35+score*4)%360},100%,60%)`:'#20e060';ctx.fillStyle=color;ctx.shadowBlur=i===0?12:4;ctx.shadowColor=color;round(s.x*C+2,s.y*C+2,16,16,5);ctx.fill()});ctx.shadowBlur=0}
 function round(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
-document.querySelectorAll('[data-dir]').forEach(b=>b.onclick=()=>setDir(b.dataset.dir));document.addEventListener('keydown',e=>{let m={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right'};if(m[e.key]){e.preventDefault();setDir(m[e.key])}if(e.key===' '){e.preventDefault();togglePause()}});
+document.addEventListener('keydown',e=>{let m={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right'};if(m[e.key]){e.preventDefault();setDir(m[e.key])}if(e.key===' '){e.preventDefault();togglePause()}});
 let touch=null;canvas.addEventListener('touchstart',e=>{let t=e.changedTouches[0];touch={x:t.clientX,y:t.clientY}},{passive:true});canvas.addEventListener('touchend',e=>{if(!touch)return;let t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;if(Math.max(Math.abs(dx),Math.abs(dy))>25)setDir(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'));touch=null},{passive:true});
 $('pause').onclick=togglePause;$('newGame').onclick=reset;$('restart').onclick=reset;$('back').onclick=()=>location.href='index.html';$('boardBtn').onclick=()=>{$('board').classList.toggle('show');renderScores()};$('clear').onclick=()=>{localStorage.removeItem('snakeScores');renderScores()};$('nightMode').onclick=()=>{manualNight=true;clock()};$('autoMode').onclick=()=>{manualNight=false;clock()};document.querySelectorAll('.skin').forEach(b=>b.onclick=()=>{skin=b.dataset.skin;document.querySelectorAll('.skin').forEach(x=>x.classList.remove('active'));b.classList.add('active');draw();localStorage.setItem('snakeSkin',skin)});skin=localStorage.getItem('snakeSkin')||'green';document.querySelectorAll('.skin').forEach(b=>b.classList.toggle('active',b.dataset.skin===skin));stars();clock();setInterval(clock,1000);reset();
 </script>
