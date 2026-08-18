@@ -42,7 +42,7 @@ canvas{display:block;width:100%;max-width:590px;aspect-ratio:1;margin:auto;borde
         <div class="stat">🥇 Cao nhất<b id="high">0</b></div>
         <div class="stat">❤️ Mạng<b id="lives">3</b></div>
         <div class="stat">🪙 Xu<b id="coins">0</b></div>
-        <div class="stat">⚡ Tốc độ<b id="speed">1.0x</b></div>
+        <div class="stat">⚡ Tốc độ<b id="speed">0.5x</b></div>
       </div>
       <canvas id="game" width="620" height="620"></canvas>
       <div class="hint">⌨️ WASD / Mũi tên • Space = Pause • 📱 Vuốt trên màn hình để di chuyển</div>
@@ -89,8 +89,9 @@ function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clea
 function clock(){let n=new Date(),h=n.getHours(),m=n.getMinutes(),s=n.getSeconds();$('clock').textContent=[h,m,s].map(x=>String(x).padStart(2,'0')).join(':');let c,l;if(manualNight){c='night';l='🌙 Ban đêm'}else if(h>=5&&h<11){c='sunrise';l='🌅 Bình minh'}else if(h>=11&&h<17){c='day';l='☀️ Ban ngày'}else if(h>=17&&h<19){c='sunset';l='🌇 Hoàng hôn'}else{c='night';l='🌙 Vũ trụ'}document.body.className=c;$('timeStatus').textContent=l}
 function stars(){for(let i=0;i<130;i++){let e=document.createElement('span');e.className='star';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';e.style.animationDelay=Math.random()*2+'s';$('stars').appendChild(e)}}
 function reset(){clearInterval(timer);snake=[{x:15,y:15},{x:14,y:15},{x:13,y:15}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;lives=3;coins=0;paused=false;ended=false;$('score').textContent=0;$('lives').textContent=3;$('coins').textContent=0;$('high').textContent=high();$('pause').textContent='⏸ Pause';$('over').classList.remove('show');placeFood();placeCoin();loop();draw()}
-function delay(){return Math.max(55,155-score*2.7)}
-function loop(){clearInterval(timer);timer=setInterval(step,delay());$('speed').textContent=(155/delay()).toFixed(1)+'x'}
+function gameSpeed(){return 0.5+(score/10)*0.3}
+function delay(){return Math.max(80,310/gameSpeed())}
+function loop(){clearInterval(timer);timer=setInterval(step,delay());$('speed').textContent=gameSpeed().toFixed(1)+'x'}
 function rand(){return{x:Math.floor(Math.random()*N),y:Math.floor(Math.random()*N)}}
 function same(a,b){return a.x===b.x&&a.y===b.y}
 function occ(p){return snake.some(s=>same(s,p))}
@@ -105,7 +106,7 @@ function renderScores(){let a=JSON.parse(localStorage.getItem('snakeScores')||'[
 function togglePause(){if(ended)return;paused=!paused;$('pause').textContent=paused?'▶ Resume':'⏸ Pause';toast(paused?'⏸ Đã tạm dừng':'▶ Tiếp tục')}
 function draw(){ctx.clearRect(0,0,620,620);ctx.fillStyle='#02050a';ctx.fillRect(0,0,620,620);ctx.strokeStyle='rgba(80,170,255,.05)';for(let i=1;i<N;i++){let p=i*C;ctx.beginPath();ctx.moveTo(p,0);ctx.lineTo(p,620);ctx.stroke();ctx.beginPath();ctx.moveTo(0,p);ctx.lineTo(620,p);ctx.stroke()}ctx.font='18px Arial';ctx.fillText('🍎',food.x*C+1,food.y*C+19);ctx.fillText('🪙',coin.x*C+1,coin.y*C+19);snake.forEach((s,i)=>{let color=i===0?'#00eaff':skin==='red'?'#ff3b5c':skin==='blue'?'#3b82f6':skin==='purple'?'#c084fc':skin==='gold'?'#ffd700':skin==='rainbow'?`hsl(${(i*35+score*4)%360},100%,60%)`:'#20e060';ctx.fillStyle=color;ctx.shadowBlur=i===0?12:4;ctx.shadowColor=color;round(s.x*C+2,s.y*C+2,16,16,5);ctx.fill()});ctx.shadowBlur=0}
 function round(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
-document.addEventListener('keydown',e=>{let m={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right'};if(m[e.key]){e.preventDefault();setDir(m[e.key])}if(e.key===' '){e.preventDefault();togglePause()}});
+document.querySelectorAll('[data-dir]').forEach(b=>b.onclick=()=>setDir(b.dataset.dir));document.addEventListener('keydown',e=>{let m={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right'};if(m[e.key]){e.preventDefault();setDir(m[e.key])}if(e.key===' '){e.preventDefault();togglePause()}});
 let touch=null;canvas.addEventListener('touchstart',e=>{let t=e.changedTouches[0];touch={x:t.clientX,y:t.clientY}},{passive:true});canvas.addEventListener('touchend',e=>{if(!touch)return;let t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;if(Math.max(Math.abs(dx),Math.abs(dy))>25)setDir(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'));touch=null},{passive:true});
 $('pause').onclick=togglePause;$('newGame').onclick=reset;$('restart').onclick=reset;$('back').onclick=()=>location.href='index.html';$('boardBtn').onclick=()=>{$('board').classList.toggle('show');renderScores()};$('clear').onclick=()=>{localStorage.removeItem('snakeScores');renderScores()};$('nightMode').onclick=()=>{manualNight=true;clock()};$('autoMode').onclick=()=>{manualNight=false;clock()};document.querySelectorAll('.skin').forEach(b=>b.onclick=()=>{skin=b.dataset.skin;document.querySelectorAll('.skin').forEach(x=>x.classList.remove('active'));b.classList.add('active');draw();localStorage.setItem('snakeSkin',skin)});skin=localStorage.getItem('snakeSkin')||'green';document.querySelectorAll('.skin').forEach(b=>b.classList.toggle('active',b.dataset.skin===skin));stars();clock();setInterval(clock,1000);reset();
 </script>
