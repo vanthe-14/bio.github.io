@@ -1,0 +1,33 @@
+name: Fix view counter
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !contains(github.event.head_commit.message, 'fix: repair online view counter endpoint') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace broken CounterAPI endpoint
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = 'https://api.countapi.xyz/hit/${VIEW_NAMESPACE}/${VIEW_KEY}'
+          new = 'https://api.counterapi.dev/v1/${VIEW_NAMESPACE}/${VIEW_KEY}/up'
+          if old not in s:
+              raise SystemExit('Old endpoint not found')
+          s = s.replace(old, new)
+          p.write_text(s, encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'fix: repair online view counter endpoint'
+          git push
