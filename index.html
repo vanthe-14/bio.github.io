@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mai Văn Thế</title>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;min-height:100%}
@@ -51,72 +50,26 @@ body.night .time-status{background:rgba(12,20,45,.62);border-color:rgba(130,170,
 <div class="container">
 <div class="top"><button class="volume-top" id="volumeTop" onclick="toggleMusic()" aria-label="Bật hoặc tắt nhạc">🔊</button></div>
 <div class="profile"><img class="avatar" src="avatar.jpeg" alt="Mai Văn Thế"><div class="info"><div class="name">Mai Văn Thế</div><div class="bio typing" id="bioText"></div></div></div>
-
-<div class="stats">
-    <b class="view-counter" title="Số lượt xem">
-        <span class="view-counter-icon">👁️</span>
-        <span class="view-count-number" id="viewCount">0</span>
-    </b>
-    <span class="separator">|</span>
-    <b>◉ 14/3</b>
-    <span class="separator">|</span>
-    <b>📍 Hà Nội</b>
-</div>
-
-<div class="boat-section">
-<div class="sailing-boat">
-<div class="ship-mast mast-main"></div><div class="ship-mast mast-left"></div><div class="ship-mast mast-right"></div>
-<div class="pirate-sail sail-left"><span class="skull">☠</span></div><div class="pirate-sail sail-center"><span class="skull">☠</span></div><div class="pirate-sail sail-right"><span class="skull">☠</span></div>
-<div class="top-sail"><span>☠</span></div><div class="pirate-flag">☠</div>
-<div class="ship-rope rope-a"></div><div class="ship-rope rope-b"></div><div class="ship-rope rope-c"></div><div class="ship-rope rope-d"></div>
-<div class="ship-deck"></div><div class="ship-cabin"><div class="cabin-window"></div><div class="cabin-window second"></div></div>
-<div class="ship-hull"><div class="hull-line line1"></div><div class="hull-line line2"></div><div class="hull-line line3"></div></div><div class="ship-bow"></div><div class="ship-wake"></div>
-</div>
-<div class="water"></div><div class="wave wave1"></div><div class="wave wave2"></div><div class="wave wave3"></div>
-</div>
-
+<div class="stats"><b class="view-counter" title="Số lượt xem"><span class="view-counter-icon">👁️</span><span class="view-count-number" id="viewCount">0</span></b><span class="separator">|</span><b>◉ 14/3</b><span class="separator">|</span><b>📍 Hà Nội</b></div>
+<div class="boat-section"><div class="sailing-boat"><div class="ship-mast mast-main"></div><div class="ship-mast mast-left"></div><div class="ship-mast mast-right"></div><div class="pirate-sail sail-left"><span class="skull">☠</span></div><div class="pirate-sail sail-center"><span class="skull">☠</span></div><div class="pirate-sail sail-right"><span class="skull">☠</span></div><div class="top-sail"><span>☠</span></div><div class="pirate-flag">☠</div><div class="ship-rope rope-a"></div><div class="ship-rope rope-b"></div><div class="ship-rope rope-c"></div><div class="ship-rope rope-d"></div><div class="ship-deck"></div><div class="ship-cabin"><div class="cabin-window"></div><div class="cabin-window second"></div></div><div class="ship-hull"><div class="hull-line line1"></div><div class="hull-line line2"></div><div class="hull-line line3"></div></div><div class="ship-bow"></div><div class="ship-wake"></div></div><div class="water"></div><div class="wave wave1"></div><div class="wave wave2"></div><div class="wave wave3"></div></div>
 <div class="song-title">Promise</div>
 <div class="music-controls"><span class="time" id="currentTime">0:00</span><div class="progress" onclick="seekMusic(event)"><div class="progress-bar" id="progressBar"></div></div><span class="time" id="duration">0:00</span><div class="buttons"><button class="music-btn" onclick="previousSong()">⏮</button><button class="play-btn" id="playBtn" onclick="toggleMusic()">▶</button><button class="music-btn" onclick="nextSong()">⏭</button></div></div>
 <button class="game-wide" onclick="goToLovePage(this)" aria-label="Mở game rắn săn mồi">🎮 &nbsp; CHƠI GAME RẮN SĂN MỒI</button>
 </div>
 <audio id="audio" src="Promise.mp3"></audio>
-
 <script>
 const timeDisplay=document.getElementById("timeDisplay"),greetingDisplay=document.getElementById("greetingDisplay");
 function updateTimeStatus(){const now=new Date(),hour=now.getHours();timeDisplay.textContent=now.toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false});let greeting,periodClass;if(hour>=5&&hour<12){greeting="Chào buổi sáng ☀️";periodClass="morning"}else if(hour>=12&&hour<18){greeting="Chào buổi chiều 🌤️";periodClass="afternoon"}else if(hour>=18&&hour<22){greeting="Chào buổi tối 🌆";periodClass="evening"}else{greeting="Chúc bạn ngủ ngon 🌙";periodClass="night"}greetingDisplay.textContent=greeting;document.body.classList.remove("morning","afternoon","evening","night");document.body.classList.add(periodClass)}
 updateTimeStatus();setInterval(updateTimeStatus,1000);
-
 const bioText=document.getElementById("bioText"),bioMessage="All difficulties will pass, like the way the shower runs through the window!";let bioIndex=0;function typeBio(){bioText.textContent=bioMessage.slice(0,bioIndex);if(bioIndex<bioMessage.length){bioIndex++;setTimeout(typeBio,bioMessage[bioIndex-1]===" "?120:55)}else{setTimeout(()=>{bioIndex=0;typeBio()},3500)}}typeBio();
-
 const canvas=document.getElementById("starfield"),ctx=canvas.getContext("2d");let width,height,centerX,centerY,stars=[];const STAR_COUNT=600,STAR_SPEED=3;function resizeCanvas(){width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight;centerX=width/2;centerY=height/2}function createStars(){stars=[];for(let i=0;i<STAR_COUNT;i++)stars.push({x:(Math.random()-.5)*width*2,y:(Math.random()-.5)*height*2,z:Math.random()*width,oldX:0,oldY:0})}function drawStars(){ctx.fillStyle="rgba(0,0,0,.35)";ctx.fillRect(0,0,width,height);for(const star of stars){const oldX=star.oldX,oldY=star.oldY;star.z-=STAR_SPEED;if(star.z<=1){star.x=(Math.random()-.5)*width*2;star.y=(Math.random()-.5)*height*2;star.z=width}const screenX=centerX+(star.x/star.z)*256,screenY=centerY+(star.y/star.z)*256,size=Math.max(.5,(1-star.z/width)*3);if(oldX>0&&oldX<width&&oldY>0&&oldY<height){ctx.beginPath();ctx.moveTo(oldX,oldY);ctx.lineTo(screenX,screenY);ctx.strokeStyle="rgba(160,220,255,.75)";ctx.lineWidth=size;ctx.stroke()}ctx.beginPath();ctx.arc(screenX,screenY,size,0,Math.PI*2);ctx.fillStyle="rgba(255,255,255,.95)";ctx.fill();star.oldX=screenX;star.oldY=screenY}requestAnimationFrame(drawStars)}window.addEventListener("resize",()=>{resizeCanvas();createStars()});resizeCanvas();createStars();drawStars();
-
 const audio=document.getElementById("audio"),playBtn=document.getElementById("playBtn"),volumeTop=document.getElementById("volumeTop"),progressBar=document.getElementById("progressBar"),currentTime=document.getElementById("currentTime"),duration=document.getElementById("duration");
 function toggleMusic(){if(audio.paused){audio.play();playBtn.innerHTML="Ⅱ";volumeTop.innerHTML="🔊"}else{audio.pause();playBtn.innerHTML="▶";volumeTop.innerHTML="🔇"}}
 audio.addEventListener("loadedmetadata",()=>{duration.innerHTML=formatTime(audio.duration)});audio.addEventListener("timeupdate",()=>{if(!audio.duration)return;progressBar.style.width=(audio.currentTime/audio.duration*100)+"%";currentTime.innerHTML=formatTime(audio.currentTime)});audio.addEventListener("ended",()=>{playBtn.innerHTML="▶";volumeTop.innerHTML="🔊";progressBar.style.width="0%";currentTime.innerHTML="0:00"});function seekMusic(event){if(!audio.duration)return;const rect=event.currentTarget.getBoundingClientRect();audio.currentTime=((event.clientX-rect.left)/rect.width)*audio.duration}function previousSong(){audio.currentTime=0}function nextSong(){audio.currentTime=0;audio.play();playBtn.innerHTML="Ⅱ";volumeTop.innerHTML="🔊"}function formatTime(seconds){if(isNaN(seconds))return"0:00";const minutes=Math.floor(seconds/60),secondsLeft=Math.floor(seconds%60).toString().padStart(2,"0");return minutes+":"+secondsLeft}
-
-/* =====================================================
-   BỘ ĐẾM LƯỢT XEM
-   Dùng CountAPI để lưu tổng lượt truy cập từ nhiều thiết bị.
-===================================================== */
-const viewCountElement=document.getElementById("viewCount");
-const VIEW_NAMESPACE="vanthe-14-bio";
-const VIEW_KEY="profile-page-views";
+const viewCountElement=document.getElementById("viewCount"),VIEW_NAMESPACE="vanthe-14-bio",VIEW_KEY="profile-page-views";
 function formatViewCount(value){return new Intl.NumberFormat("vi-VN").format(value)}
-async function updateViewCount(){
-    try{
-        const response=await fetch(`https://api.countapi.xyz/hit/${VIEW_NAMESPACE}/${VIEW_KEY}`);
-        if(!response.ok) throw new Error("count api unavailable");
-        const data=await response.json();
-        if(typeof data.value==="number") viewCountElement.textContent=formatViewCount(data.value);
-    }catch(error){
-        const localViews=Number(localStorage.getItem("profilePageViews")||0)+1;
-        localStorage.setItem("profilePageViews",String(localViews));
-        viewCountElement.textContent=formatViewCount(localViews);
-        console.warn("Không lấy được bộ đếm online, dùng bộ đếm cục bộ.",error);
-    }
-}
+async function updateViewCount(){try{const response=await fetch(`https://api.counterapi.dev/v1/${VIEW_NAMESPACE}/${VIEW_KEY}/up`,{cache:"no-store"});if(!response.ok)throw new Error("online counter unavailable");const data=await response.json();const count=Number(data.count);if(Number.isFinite(count)){viewCountElement.textContent=formatViewCount(count)}else{throw new Error("invalid counter response")}}catch(error){viewCountElement.textContent="—";console.warn("Không thể cập nhật bộ đếm online.",error)}}
 updateViewCount();
-
 function goToLovePage(button){button.style.transform="scale(.98)";button.style.color="#00aaff";setTimeout(()=>{window.open("love.html","_blank","noopener");button.style.transform=""},180)}
 </script>
 </body>
